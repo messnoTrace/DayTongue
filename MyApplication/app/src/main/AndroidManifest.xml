@@ -64,18 +64,19 @@
         <activity
             android:name=".activitys.RegisterActivity"
             android:label="@string/title_activity_register" >
-
         </activity>
         <activity
             android:name=".activitys.LoginActivity"
             android:label="@string/title_activity_login" >
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activitys.UpdatePwdActivity"
+            android:label="@string/title_activity_update_pwd" >
         </activity>
     </application>
 
