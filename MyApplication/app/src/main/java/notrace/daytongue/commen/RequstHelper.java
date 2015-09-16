@@ -6,6 +6,7 @@ import com.android.volley.error.AuthFailureError;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.StringRequest;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -101,6 +102,55 @@ public class RequstHelper {
 
         VolleyRequest.getInstance().getQue().add(request);
     }
+
+
+    public static  void  updateUser(final String userXml,String tokenKey){
+
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_UPDATEPASSWORD, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return super.getParams();
+            }
+        };
+    }
+
+    public static  void getTopic(int top,String gCode,int isPerson,String uCode,String datetime){
+
+
+    }
+
+
+    public void postRequest(String url,final HashMap<String,String>params)
+    {
+
+        StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return params;
+            }
+        };
+    }
+
 
 
 }
