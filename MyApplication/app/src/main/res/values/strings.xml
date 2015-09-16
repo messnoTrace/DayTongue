@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">DayTongue</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_choose_image">ChooseImageActivity</string>
+    <string name="title_activity_image_list">ImageListActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+</resources>

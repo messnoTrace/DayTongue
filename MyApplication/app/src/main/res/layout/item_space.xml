@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <notrace.daytongue.views.CircleImageView
+            android:id="@+id/civ_item_space_head"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/icon_touxiang"
+            />
+
+        <TextView
+            android:id="@+id/tv_item_space_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="张三"
+            android:layout_toRightOf="@id/civ_item_space_head"
+            android:layout_marginTop="20dp"
+            />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="来自android客户端"
+            android:layout_toRightOf="@id/civ_item_space_head"
+            android:layout_alignBottom="@id/civ_item_space_head"
+            android:id="@+id/tv_item_space_terminal"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:text="1分钟前"
+            android:id="@+id/tv_item_space_time"
+            />
+    </RelativeLayout>
+
+    <notrace.daytongue.views.UnScrollableGridView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:numColumns="3"
+        android:verticalSpacing="5dp"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        >
+
+    </notrace.daytongue.views.UnScrollableGridView>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:drawableLeft="@drawable/icon_biaoqian"
+            android:layout_width="wrap_content"
+            android:text="标签"
+            android:gravity="center_vertical"
+            android:drawablePadding="5dp"
+            android:padding="5dp"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/tv_item_space_tags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="其他"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/tv_item_space_good"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="赞"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:drawablePadding="3dp"
+            android:drawableLeft="@drawable/icon_search"
+            android:background="@color/grey"
+            />
+        <TextView
+            android:id="@+id/tv_item_space_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="评论"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:drawablePadding="3dp"
+            android:drawableLeft="@drawable/icon_search"
+            android:background="@color/grey"
+            />
+        <TextView
+            android:id="@+id/tv_item_space_collection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收藏"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:drawablePadding="3dp"
+            android:drawableLeft="@drawable/icon_search"
+            android:background="@color/grey"
+            />
+        <TextView
+            android:id="@+id/tv_item_space_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:drawablePadding="3dp"
+            android:drawableLeft="@drawable/icon_search"
+            android:background="@color/grey"
+            />
+        <TextView
+            android:id="@+id/tv_item_space_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="举报"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:drawablePadding="3dp"
+            android:drawableLeft="@drawable/icon_search"
+            android:background="@color/grey"
+            />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_item_space_gooditem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+         />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        ></android.support.v7.widget.RecyclerView>
+    <include layout="@layout/view_divider_match_parent"/>
+
+    <TextView
+
+        android:id="@+id/tv_item_space_commentcount"
+        android:layout_gravity="center_horizontal"
+        android:text="暂无评论"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
