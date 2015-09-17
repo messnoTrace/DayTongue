@@ -37,6 +37,8 @@ public class PhotoPickUtil {
     private Fragment fragmentContext;
     private OnPhotoPickedlistener onPhotoPickedlistener;
 
+
+
     /**
      * 普通的activity使用的构造器，回调activity中的onActivityResult(...)
      * @param context

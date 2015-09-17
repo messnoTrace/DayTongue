@@ -26,6 +26,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.0.+'
     compile 'com.etsy.android.grid:library:1.0.5'
     compile files('libs/dom4j-1.6.1.jar')
-    compile files('libs/myvolleyplus.jar')
     compile files('libs/gson-2.2.4.jar')
+    compile files('libs/mvolleyplus.jar')
+    compile files('libs/xstream-1.4.jar')
 }

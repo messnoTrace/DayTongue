@@ -3,13 +3,13 @@ package notrace.daytongue.http;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.android.volley.GsonRequest;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.cache.BitmapImageCache;
 import com.android.volley.cache.SimpleImageLoader;
-import com.android.volley.request.GsonRequest;
 import com.android.volley.request.JsonArrayRequest;
 import com.android.volley.request.JsonObjectRequest;
 import com.android.volley.request.StringRequest;
@@ -22,15 +22,16 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 
 public class VolleyRequest {
 
 	private static VolleyRequest instance = null;
 	private RequestQueue volleyRequestQueue;
 	private SimpleImageLoader mImageLoader;
-
 	public RequestQueue getQue(){
-		return  volleyRequestQueue;
+		return volleyRequestQueue;
 	}
 
 	private VolleyRequest() {
@@ -50,11 +51,12 @@ public class VolleyRequest {
 
 	public void init(Context con) {
 		volleyRequestQueue = Volley.newRequestQueue(con);
-		mImageLoader = new SimpleImageLoader(volleyRequestQueue, BitmapImageCache.getInstance(null));
+		mImageLoader = new SimpleImageLoader(volleyRequestQueue,
+				BitmapImageCache.getInstance(null));
 	}
 
 	/**
-	 * ��������һ��StringRequest����(GET)
+	 * 创建发送一个StringRequest请求(GET)
 	 * 
 	 * @param url
 	 * @param listener
@@ -69,7 +71,7 @@ public class VolleyRequest {
 	}
 
 	/**
-	 * ��������һ��StringRequest����
+	 * 创建发送一个StringRequest请求
 	 * 
 	 * @param method
 	 * @param url
@@ -86,7 +88,7 @@ public class VolleyRequest {
 	}
 
 	/**
-	 * ��������һ��JsonObjectRequest����(GET)
+	 * 创建发送一个JsonObjectRequest请求(GET)
 	 * 
 	 * @param url
 	 * @param listener
@@ -103,7 +105,7 @@ public class VolleyRequest {
 	}
 
 	/**
-	 * ��������һ��JsonObjectRequest����
+	 * 创建发送一个JsonObjectRequest请求
 	 * 
 	 * @param method
 	 * @param url
@@ -121,7 +123,7 @@ public class VolleyRequest {
 	}
 
 	/**
-	 * ��������һ��JsonArrayRequest����(GET)
+	 * 创建发送一个JsonArrayRequest请求(GET)
 	 * 
 	 * @param url
 	 * @param listener
@@ -136,9 +138,8 @@ public class VolleyRequest {
 		return request;
 	}
 
-
 	/**
-	 * ͨ��ImageLoader��ȡͼƬ(�Զ����?��)
+	 * 通过ImageLoader获取图片(自动管理缓存)
 	 * 
 	 * @param imageView
 	 * @param imgViewUrl
@@ -153,7 +154,7 @@ public class VolleyRequest {
 	}
 
 	/**
-	 * networkImageView����
+	 * networkImageView处理
 	 * 
 	 * @param networkImageView
 	 * @param imageUrl
@@ -168,7 +169,7 @@ public class VolleyRequest {
 	}
 
 	/**
-	 * ��������һ�� GsonRequest(GET)
+	 * 创建发送一个 GsonRequest(GET)
 	 * 
 	 * @param url
 	 * @param clazz
@@ -185,7 +186,7 @@ public class VolleyRequest {
 	}
 
 	/**
-	 * ��������һ�� GsonRequest
+	 * 创建发送一个 GsonRequest(Get或者Post都行)
 	 * 
 	 * @param url
 	 * @param clazz
@@ -194,15 +195,16 @@ public class VolleyRequest {
 	 * @return
 	 */
 	public <T> GsonRequest<T> newGsonRequest(int method, String url,
-			Class<T> clazz, Listener<T> listener, ErrorListener errorListener) {
-		GsonRequest<T> request = new GsonRequest<T>(method, url, clazz,
+			Class<T> clazz, Map<String, String> params, Listener<T> listener,
+			ErrorListener errorListener) {
+		GsonRequest<T> request = new GsonRequest<T>(method, url, clazz, params,
 				listener, errorListener);
 		add(request);
 		return request;
 	}
 
 	/**
-	 * ��������һ�� GsonRequest(GET)
+	 * 创建发送一个TypeToken的GsonRequest(GET)
 	 * 
 	 * @param url
 	 * @param typeToken
@@ -220,7 +222,7 @@ public class VolleyRequest {
 	}
 
 	/**
-	 * ��������һ�� GsonRequest
+	 * 创建发送一个 TypeToken的GsonRequest(Get或者Post都行)
 	 * 
 	 * @param url
 	 * @param typeToken
@@ -229,10 +231,10 @@ public class VolleyRequest {
 	 * @return
 	 */
 	public <T> GsonRequest<T> newGsonRequest(int method, String url,
-			TypeToken<T> typeToken, Listener<T> listener,
-			ErrorListener errorListener) {
+			TypeToken<T> typeToken, Map<String, String> params,
+			Listener<T> listener, ErrorListener errorListener) {
 		GsonRequest<T> request = new GsonRequest<T>(method, url, typeToken,
-				listener, errorListener);
+				params, listener, errorListener);
 		add(request);
 		return request;
 	}
@@ -242,7 +244,7 @@ public class VolleyRequest {
 	}
 
 	/**
-	 * �жϡ�ȡ����������
+	 * 中断、取消所有请求
 	 * 
 	 * @param tag
 	 */

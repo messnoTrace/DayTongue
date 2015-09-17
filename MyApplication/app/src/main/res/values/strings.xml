@@ -10,4 +10,8 @@
     <string name="title_activity_image_list">ImageListActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_mine_center">MineCenterActivity</string>
+    <string name="title_activity_mine_detail">MineDetailActivity</string>
+    <string name="title_activity_other_person_center">OtherPersonCenterActivity</string>
+    <string name="title_activity_other_person_detail">OtherPersonDetailActivity</string>
 </resources>

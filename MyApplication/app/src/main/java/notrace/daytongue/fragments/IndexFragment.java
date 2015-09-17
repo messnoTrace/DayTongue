@@ -21,6 +21,7 @@ import java.util.List;
 import notrace.daytongue.LazyFragment;
 import notrace.daytongue.R;
 import notrace.daytongue.commen.CommonConst;
+import notrace.daytongue.commen.RequstHelper;
 import notrace.daytongue.entitys.TestEntity;
 import notrace.daytongue.utils.ViewUtil;
 import notrace.daytongue.views.AutoScrollViewPager;
@@ -30,7 +31,6 @@ public class IndexFragment extends LazyFragment {
     private SwipeRefreshLayout sfl_index;
     private RecyclerView rcv_index;
     private FrameLayout fl_index_content;
-
 
 
     private StaggeredGridView sgv_index;
@@ -64,13 +64,28 @@ public class IndexFragment extends LazyFragment {
     @Override
     protected void onViewCreated(View parentView) {
         mContext=getActivity();
-        sfl_index=findView(parentView,R.id.sfl_index);
+        sfl_index=findView(parentView, R.id.sfl_index);
         rcv_index=findView(parentView,R.id.rcv_index);
         fl_index_content=findView(parentView,R.id.fl_index_bannercontent);
         sgv_index=findView(parentView,R.id.sgv_index);
 
+
+        loadData();
     }
 
+
+    private void loadData()
+    {
+
+        loadBanner();
+    }
+
+    private void loadBanner()
+    {
+
+        RequstHelper.getRCMDBannerInfo();
+
+    }
 
     /**
      * init banner

@@ -7,10 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import notrace.daytongue.BaseActivity;
+import notrace.daytongue.MainActivity;
+import notrace.daytongue.MyApplication;
 import notrace.daytongue.R;
 import notrace.daytongue.commen.RequstHelper;
 import notrace.daytongue.entitys.response.LoginResult;
-import notrace.daytongue.http.RequesCallBack;
+import notrace.daytongue.http.RequestCallBack;
 
 public class LoginActivity extends BaseActivity {
 
@@ -30,6 +32,8 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void findViews() {
+
+        setNavigation("登录");
 
         btn_login= (Button) findViewById(R.id.btn_login_login);
         btn_register= (Button) findViewById(R.id.btn_login_register);
@@ -75,9 +79,16 @@ public class LoginActivity extends BaseActivity {
         check();
 
         //// TODO: 2015/9/16  regex check
-        RequstHelper.checkLogin(name, pwd, new RequesCallBack<LoginResult>() {
+        RequstHelper.checkLogin(name, pwd, new RequestCallBack<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+
+                MyApplication.currentUser=loginResult;
+
+                //TODO Login success test
+//                startActivity(new Intent(LoginActivity.this,MineCenterActivity.class));
+                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                finish();
 
             }
 

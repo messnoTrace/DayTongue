@@ -9,6 +9,8 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.LinkedList;
 
@@ -83,5 +85,25 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         CommonConst.SCREENWIDTH=metrics.heightPixels;
         return metrics.heightPixels;
+    }
+
+    public void setNavigation(String title){
+        ImageView back = (ImageView) findViewById(R.id.iv_navigate_back);
+
+        if(back==null){
+            TextView tvTitle= (TextView) findViewById(R.id.tv_navigate_title);
+            tvTitle.setText(title);
+        }else
+        {
+            TextView tvTitle=(TextView) findViewById(R.id.tv_title);
+            tvTitle.setText(title);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
+
     }
 }

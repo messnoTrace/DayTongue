@@ -1,0 +1,521 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/ll_minedetail_root"
+    android:fitsSystemWindows="true"
+    android:background="@color/background"
+    >
+
+    <include layout="@layout/navigate_back"/>
+
+    <ScrollView
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="@dimen/navigation_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="头像"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_minedetail_headright"
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/right_goto"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+                <notrace.daytongue.views.CircleImageView
+                    android:id="@+id/civ_minedetail_head"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_touxiang"
+                    android:layout_toLeftOf="@id/iv_minedetail_headright"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_centerVertical="true"
+                    />
+
+                <View
+                    style="@style/line"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                  />
+            </RelativeLayout>
+
+
+
+
+            <RelativeLayout
+                android:id="@+id/rl_minedetail_nick"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="@dimen/navigation_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="昵称"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_minedetail_nickright"
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/right_goto"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+
+                <TextView
+
+                    android:id="@+id/tv_minedetail_nick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张三"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_minedetail_nickright"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+                <View
+                    style="@style/line"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/rl_minedetail_qrcode"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="@dimen/navigation_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="二维码"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_minedetail_qrright"
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/right_goto"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+
+                <ImageView
+
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_launcher"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_minedetail_qrright"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:id="@+id/iv_minedetail_qrcode" />
+
+
+            </RelativeLayout>
+
+
+
+
+            <RelativeLayout
+                android:id="@+id/rl_minedetail_sign"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_marginTop="10dp"
+                android:layout_height="@dimen/navigation_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="个性签名"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_minedetail_signright"
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/right_goto"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+
+                <TextView
+
+                    android:id="@+id/tv_minedetail_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="签名"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_minedetail_signright"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+                <View
+                    style="@style/line"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_minedetail_realname"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="@dimen/navigation_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="真实姓名"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_minedetail_realnameright"
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/right_goto"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+
+                <TextView
+
+                    android:id="@+id/tv_minedetail_realname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张三"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_minedetail_realnameright"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+                <View
+                    style="@style/line"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_minedetail_sex"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="@dimen/navigation_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_minedetail_sexright"
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/right_goto"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+
+                <TextView
+
+                    android:id="@+id/tv_minedetail_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张三"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_minedetail_sexright"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+                <View
+                    style="@style/line"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_minedetail_birthday"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="@dimen/navigation_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="生日"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_minedetail_birthdayright"
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/right_goto"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+
+                <TextView
+
+                    android:id="@+id/tv_minedetail_birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张三"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_minedetail_birthdayright"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/rl_minedetail_city"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="@dimen/navigation_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="所在城市"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_minedetail_cityright"
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/right_goto"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+
+                <TextView
+
+                    android:id="@+id/tv_minedetail_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张三"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_minedetail_cityright"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+                <View
+                    style="@style/line"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_minedetail_profession"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="@dimen/navigation_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="从事行业"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_minedetail_prefessionright"
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/right_goto"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+
+                <TextView
+
+                    android:id="@+id/tv_minedetail_prefession"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张三"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_minedetail_prefessionright"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+                <View
+                    style="@style/line"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_minedetail_style"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="@dimen/navigation_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="喜好风格"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_minedetail_styleright"
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/right_goto"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+
+                <TextView
+
+                    android:id="@+id/tv_minedetail_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张三"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_minedetail_styleright"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+                <View
+                    style="@style/line"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_minedetail_mobile"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="@dimen/navigation_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="手机号"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_minedetail_mobileright"
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/right_goto"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+
+                <TextView
+
+                    android:id="@+id/tv_minedetail_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张三"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_minedetail_mobileright"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

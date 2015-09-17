@@ -9,7 +9,7 @@ import android.widget.Toast;
 import notrace.daytongue.BaseActivity;
 import notrace.daytongue.R;
 import notrace.daytongue.commen.RequstHelper;
-import notrace.daytongue.http.RequesCallBack;
+import notrace.daytongue.http.RequestCallBack;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
@@ -64,7 +64,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
         checkForm();
 
-        RequstHelper.register(name, pwd, new RequesCallBack<String>() {
+        RequstHelper.register(name, pwd, new RequestCallBack<String>() {
             @Override
             public void onSuccess(String s) {
                 Toast.makeText(RegisterActivity.this,s,Toast.LENGTH_SHORT).show();

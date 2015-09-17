@@ -1,0 +1,346 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/divide_line_color"
+    >
+    <include layout="@layout/navigate_back"/>
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+
+    <RelativeLayout
+
+        android:layout_marginTop="1dp"
+        android:id="@+id/rl_minecenter_center"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+
+        <notrace.daytongue.views.CircleImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:src="@drawable/icon_touxiang"
+            android:id="@+id/civ_minecenter_head"
+            />
+
+        <TextView
+            android:id="@+id/tv_minecenter_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:layout_toRightOf="@id/civ_minecenter_head"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:layout_alignLeft="@id/tv_minecenter_name"
+            android:layout_below="@id/tv_minecenter_name"
+            android:id="@+id/tv_minecenter_sign"
+            android:text="个性签名"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="20dp"
+            android:src="@drawable/right_goto"
+            android:layout_centerVertical="true"
+
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            />
+    </RelativeLayout>
+
+    <include layout="@layout/view_divider_match_parent"/>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+
+
+        <LinearLayout
+            android:id="@+id/ll_minecenter_daytongue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_minecenter_day"
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11"
+                />
+
+            <TextView
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="每日舌尖"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_minecenter_foucs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_minecenter_fouces"
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11"
+                />
+
+            <TextView
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关注"
+                />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/ll_minecenter_fans"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_minecenter_fans"
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11"
+                />
+
+            <TextView
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="粉丝"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:id="@+id/rl_minecenter_attitude"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/navigation_height"
+                android:background="@color/white"
+
+                android:paddingLeft="15dp" >
+                <ImageView
+                    android:id="@+id/iv_minecenter_attitude"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_search"/>
+                <TextView
+                    android:layout_toRightOf="@id/iv_minecenter_attitude"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="我的态度"
+                    android:textSize="15sp"
+                  />
+
+                <View style="@style/line"
+                    android:layout_alignLeft="@id/iv_minecenter_attitude"
+                    android:layout_alignParentBottom="true"
+                    />
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/right_goto"/>
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/rl_minecenter_collection"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/navigation_height"
+                android:background="@color/white"
+                android:paddingLeft="15dp" >
+                <ImageView
+                    android:id="@+id/iv_minecenter_collection"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_search"/>
+                <TextView
+                    android:layout_toRightOf="@id/iv_minecenter_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="我的收藏"
+                    android:textSize="15sp"
+                   />
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/right_goto" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:id="@+id/rl_minecenter_circle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/navigation_height"
+                android:background="@color/white"
+                android:paddingLeft="15dp" >
+                <ImageView
+                    android:id="@+id/iv_minecenter_circle"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_search"/>
+                <TextView
+                    android:layout_toRightOf="@id/iv_minecenter_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="圈子"
+                    android:textSize="15sp"
+                    />
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/right_goto" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:id="@+id/rl_minecenter_suggestion"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/navigation_height"
+                android:background="@color/white"
+                android:paddingLeft="15dp" >
+                <ImageView
+                    android:id="@+id/iv_minecenter_suggestion"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_search"/>
+                <TextView
+                    android:layout_toRightOf="@id/iv_minecenter_suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="给点建议"
+                    android:textSize="15sp"
+                    />
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/right_goto" />
+            </RelativeLayout>
+
+
+
+
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:id="@+id/rl_minecenter_setting"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/navigation_height"
+                android:background="@color/white"
+                android:paddingLeft="15dp" >
+                <ImageView
+                    android:id="@+id/iv_minecenter_setting"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_search"/>
+                <TextView
+                    android:layout_toRightOf="@id/iv_minecenter_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="设置中心"
+                    android:textSize="15sp"
+                    />
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/right_goto" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+    </ScrollView>
+
+
+</LinearLayout>

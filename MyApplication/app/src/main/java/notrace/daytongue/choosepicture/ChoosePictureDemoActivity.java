@@ -30,7 +30,7 @@ import notrace.daytongue.utils.FileDownloadUtil;
 import notrace.daytongue.views.CircleImageView;
 
 
-public class ChoosePictureDemoActivity extends BaseActivity {
+public class  ChoosePictureDemoActivity extends BaseActivity {
 	
 	private CircleImageView civ;
 	private InputMethodManager imm;

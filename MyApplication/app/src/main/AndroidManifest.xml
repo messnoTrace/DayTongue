@@ -74,9 +74,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activitys.UpdatePwdActivity" >
+        </activity>
         <activity
-            android:name=".activitys.UpdatePwdActivity"
-            android:label="@string/title_activity_update_pwd" >
+            android:name=".activitys.MineCenterActivity"
+            android:label="@string/title_activity_mine_center" >
+        </activity>
+        <activity
+            android:name=".activitys.MineDetailActivity"
+            android:label="@string/title_activity_mine_detail" >
+        </activity>
+        <activity
+            android:name=".activitys.OtherPersonCenterActivity"
+            android:label="@string/title_activity_other_person_center" >
+        </activity>
+        <activity
+            android:name=".activitys.OtherPersonDetailActivity"
+            android:label="@string/title_activity_other_person_detail" >
         </activity>
     </application>
 

@@ -10,9 +10,10 @@ import notrace.daytongue.R;
 
 class UpdatePwdActivity extends BaseActivity implements View.OnClickListener{
 
-    private EditText et_pwd;
+    private EditText et_pwd,et_oldpwd,et_confirmpwd;
     private Button btn_ok;
 
+    private String oldpwd,newpwd,confirmpwd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +49,24 @@ class UpdatePwdActivity extends BaseActivity implements View.OnClickListener{
         switch (view.getId())
         {
             case R.id.btn_updatepwd_ok:
-                
+
+                update();
                 break;
         }
+    }
+
+    private void  update(){
+        check();
+
+
+    }
+
+    private void  check(){
+
+        oldpwd=et_oldpwd.getText().toString().trim();
+        newpwd=et_pwd.getText().toString().trim();
+        confirmpwd=et_confirmpwd.getText().toString().trim();
+
+
     }
 }

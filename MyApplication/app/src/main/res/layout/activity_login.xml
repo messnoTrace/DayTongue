@@ -21,6 +21,7 @@
         <EditText
             android:id="@+id/et_login_name"
             android:layout_width="match_parent"
+            android:text="13051322322"
             android:layout_height="wrap_content"
             />
 
@@ -41,6 +42,7 @@
 
         <EditText
             android:id="@+id/et_login_pwd"
+            android:text="111111"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />

@@ -20,13 +20,16 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import java.io.File;
 
 import notrace.daytongue.commen.PathConsts;
+import notrace.daytongue.entitys.response.LoginResult;
 import notrace.daytongue.http.VolleyRequest;
 
 /**
  * Created by notrace on 2015/7/20.
  */
 public class MyApplication extends Application {
-	
+
+
+    public static LoginResult currentUser;
 	
 	private Context applicationContext;
     @Override

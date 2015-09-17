@@ -6,8 +6,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 import notrace.daytongue.LazyFragment;
+import notrace.daytongue.MyApplication;
 import notrace.daytongue.R;
 import notrace.daytongue.choosepicture.ChoosePictureDemoActivity;
+import notrace.daytongue.commen.RequstHelper;
 
 
 public class SpaceFragment extends LazyFragment implements View.OnClickListener{
@@ -24,6 +26,7 @@ public class SpaceFragment extends LazyFragment implements View.OnClickListener{
     @Override
     public void initData() {
 
+        loadData();
     }
 
     @Override
@@ -35,6 +38,7 @@ public class SpaceFragment extends LazyFragment implements View.OnClickListener{
     protected void onViewCreated(View parentView) {
         mContext=getActivity();
         iv_space_image=findView(parentView,R.id.iv_space_image);
+        loadData();
     }
 
     @Override
@@ -49,5 +53,9 @@ public class SpaceFragment extends LazyFragment implements View.OnClickListener{
 
                 break;
         }
+    }
+
+    private void loadData(){
+        RequstHelper.getTopic("10","","0", MyApplication.currentUser.getUcode(),"");
     }
 }

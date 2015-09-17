@@ -8,7 +8,6 @@ import android.annotation.SuppressLint;
  */
 public abstract class LazyFragment extends BaseFragment{
 	protected boolean isVisible;
-
 	/**
 	 */
 	@SuppressLint("NewApi")
