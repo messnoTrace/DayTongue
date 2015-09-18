@@ -14,4 +14,6 @@
     <string name="title_activity_mine_detail">MineDetailActivity</string>
     <string name="title_activity_other_person_center">OtherPersonCenterActivity</string>
     <string name="title_activity_other_person_detail">OtherPersonDetailActivity</string>
+    <string name="title_activity_topic">TopicActivity</string>
+    <string name="title_activity_image_viewer">ImageViewerActivity</string>
 </resources>

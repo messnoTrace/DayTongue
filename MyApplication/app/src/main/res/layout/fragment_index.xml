@@ -31,28 +31,29 @@
     >
 
 
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
 
+        android:scrollbars="none"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             >
 
             <FrameLayout
                 android:id="@+id/fl_index_bannercontent"
                 android:layout_width="match_parent"
-                android:layout_height="150dp">
-
+                android:layout_height="wrap_content">
 
             </FrameLayout>
 
-
-
             <com.etsy.android.grid.StaggeredGridView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/sgv_index"
@@ -62,16 +63,40 @@
                 app:column_count_portrait="3"
                 />
 
-            <android.support.v7.widget.RecyclerView
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/rcv_index"
-                />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                >
+
+                <notrace.daytongue.views.UnScrollableListView
+
+                    android:id="@+id/uslv_index_user"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:scrollbars="none"
+                    android:layout_margin="5dp"
+
+                    android:layout_height="wrap_content"></notrace.daytongue.views.UnScrollableListView>
+
+                <notrace.daytongue.views.UnScrollableListView
+                    android:id="@+id/uslv_index_photo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:scrollbars="none"
+                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content"></notrace.daytongue.views.UnScrollableListView>
+
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
     </ScrollView>
-
-
 </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

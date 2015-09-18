@@ -43,7 +43,7 @@ public class UploadUtil {
             conn.setRequestMethod("POST");  //请求方式
             conn.setRequestProperty("Charset", CHARSET);  //设置编码
             conn.setRequestProperty("connection", "keep-alive");
-            conn.setRequestProperty("Content-Type", CONTENT_TYPE + ";boundary=" + BOUNDARY);
+            conn.setRequestProperty("Contents-Type", CONTENT_TYPE + ";boundary=" + BOUNDARY);
 
             if(file!=null)
             {
@@ -61,8 +61,8 @@ public class UploadUtil {
                  * filename是文件的名字，包含后缀名的   比如:abc.png
                  */
 
-                sb.append("Content-Disposition: form-data; name=\"img\"; filename=\""+file.getName()+"\""+LINE_END);
-                sb.append("Content-Type: application/octet-stream; charset="+CHARSET+LINE_END);
+                sb.append("Contents-Disposition: form-data; name=\"img\"; filename=\""+file.getName()+"\""+LINE_END);
+                sb.append("Contents-Type: application/octet-stream; charset="+CHARSET+LINE_END);
                 sb.append(LINE_END);
                 dos.write(sb.toString().getBytes());
                 InputStream is = new FileInputStream(file);

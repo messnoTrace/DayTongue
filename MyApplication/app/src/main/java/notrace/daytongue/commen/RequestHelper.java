@@ -11,9 +11,10 @@ import com.android.volley.request.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+import notrace.daytongue.entitys.Banner;
+import notrace.daytongue.entitys.Topics;
 import notrace.daytongue.entitys.response.BaseResult;
 import notrace.daytongue.entitys.response.LoginResult;
-import notrace.daytongue.entitys.response.root;
 import notrace.daytongue.http.RequestCallBack;
 import notrace.daytongue.http.VolleyRequest;
 import notrace.daytongue.xmlutils.XmlUtils;
@@ -21,8 +22,16 @@ import notrace.daytongue.xmlutils.XmlUtils;
 /**
  * Created by notrace on 2015/9/16.
  */
-public class RequstHelper {
+public class RequestHelper {
 
+
+
+    /**
+     * LOGIN ok
+     * @param userName
+     * @param pwd
+     * @param callBack
+     */
     public static void checkLogin(final String userName, final String pwd, final RequestCallBack<LoginResult> callBack){
 
 
@@ -61,6 +70,14 @@ public class RequstHelper {
         VolleyRequest.getInstance().getQue().add(request);
     }
 
+    //OK
+
+    /**
+     * register  ok
+     * @param name
+     * @param pwd
+     * @param callBack
+     */
     public static void register(final String name,final String pwd, final RequestCallBack<String> callBack)
     {
 
@@ -130,6 +147,15 @@ public class RequstHelper {
 
 
 
+
+    /**
+     * get topic
+     * @param top
+     * @param gCode
+     * @param isPerson
+     * @param uCode
+     * @param datetime
+     */
     public static  void getTopic(final String top, final String gCode, final String isPerson, final String uCode, final String datetime){
 
         StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GETTOPIC, new Response.Listener<String>() {
@@ -197,6 +223,7 @@ public class RequstHelper {
      * @param oldPwd
      * @param callBack
      */
+    //OK
     public static void updatePassword(final String pwd, final String uCode, final String oldPwd, final RequestCallBack<BaseResult> callBack){
 
         StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_UPDATEPASSWORD, new Response.Listener<String>() {
@@ -230,6 +257,14 @@ public class RequstHelper {
 
 
 
+    //OK
+
+    /**
+     * upload image ok
+     * @param bytestr
+     * @param ucode
+     * @param fileExtension
+     */
     public static void upLoadImage(final String bytestr, final String ucode,final String fileExtension){
 
         StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_FILEUPLOADIMAGE, new Response.Listener<String>() {
@@ -259,20 +294,25 @@ public class RequstHelper {
         VolleyRequest.getInstance().getQue().add(request);
     }
 
-    public static void  getRCMDBannerInfo(){
+    /**
+     * index banner data ok
+     * @param callBack
+     */
+    //OK
+    public static void  getRCMDBannerInfo(final RequestCallBack<Banner>callBack){
 
         StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GetRCMDBannerInfo, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
-                Log.d("TAG",s);
-                root root=XmlUtils.xmlToBean(s,root.class);
+                Banner banner=XMLParser.xml2Banner(s);
+                callBack.onSuccess(banner);
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
 
-                Log.d("TAG",volleyError.toString());
+                callBack.onFail(volleyError.toString());
             }
 
             }){
@@ -286,13 +326,214 @@ public class RequstHelper {
         VolleyRequest.getInstance().getQue().add(request);
     }
 
-//
-//    private void baserequest(String url,final Map<String,String>params,final RequestCallBack<Class<T>>callBack){
+
+//OK
+
+    /**
+     * index right listview ok
+     * @param page
+     * @param callBack
+     */
+    public  static void getRCMDPhotoInfo(final String page,final RequestCallBack<Banner>callBack){
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GetRCMDPhotoInfo, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                Banner model=XMLParser.xml2Banner(s);
+                callBack.onSuccess(model);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+                callBack.onFail(volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>params=new HashMap<>();
+                params.put("tokenKey",CommonConst.TOKENID);
+                params.put("pageSize","10");
+                params.put("page",page);
+                return params;
+            }
+        };
+        VolleyRequest.getInstance().getQue().add(request);
+    }
+
+
+    /**
+     * index left listview ok
+     * @param page
+     * @param callBack
+     */
+    public  static void getRCMDUserInfo(final String page,final RequestCallBack<Banner>callBack){
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GetRCMDUserInfo, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                Banner model=XMLParser.xml2Banner(s);
+                callBack.onSuccess(model);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+                callBack.onFail(volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>params=new HashMap<>();
+                params.put("tokenKey",CommonConst.TOKENID);
+                params.put("pageSize","10");
+                params.put("page",page);
+                return params;
+            }
+        };
+        VolleyRequest.getInstance().getQue().add(request);
+    }
+
+
+
+    //OK
+
+    /**
+     * get user topic by uCode ok
+     * @param uCode
+     * @param page
+     * @param callBack
+     */
+    public static void GetUserPicTopic(final String uCode,final  String page,final  RequestCallBack<Topics>callBack){
+
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GetUserPicTopic, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+                Topics topics=XMLParser.xml2Topics(s.trim().replace("&nbsp", ""));
+                callBack.onSuccess(topics);
+
+                Log.d("===================", topics.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d("===================", volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>params=new HashMap<>();
+                params.put("uCode",uCode);
+                params.put("pageIndex","10");
+                params.put("page",page);
+                params.put("tokenKey",CommonConst.TOKENID);
+                params.put("currentUCode","");
+                params.put("datetime","");
+                return params;
+            }
+        };
+
+        VolleyRequest.getInstance().getQue().add(request);
+    }
+
+
+    /**
+     * add good 0k
+     * @param fCode
+     * @param type
+     * @param uCode
+     * @param act
+     * @param callBack
+     */
+    public static void addGood(final String fCode, final String type, final String uCode, final String act, final RequestCallBack<String>callBack){
+
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_ADDGOOD, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+                callBack.onSuccess(s);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                callBack.onFail(volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String>map=new HashMap<>();
+                map.put("fCode",fCode);
+                map.put("type",type);
+                map.put("uCode",uCode);
+                map.put("act",act);
+                map.put("tokenKey",CommonConst.TOKENID);
+                return map;
+            }
+        };
+
+        VolleyRequest.getInstance().getQue().add(request);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    private void baserequest(String url,final Map<String,String>params,final RequestCallBack<T>callBack){
 //        StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 //            @Override
 //            public void onResponse(String s) {
 //
-//               Class<T> t=XmlUtils.xmlToBean(s,t.getClass());
+//               T t=XmlUtils.xmlToBean(s,T.class);
 //                callBack.onSuccess(t);
 //
 //            }
@@ -311,7 +552,7 @@ public class RequstHelper {
 //        };
 //        VolleyRequest.getInstance().getQue().add(request);
 //    }
-//
+
 //
 //    protected Class<T> getResultClass(){
 //        try{

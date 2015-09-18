@@ -10,6 +10,15 @@ public class RCMDModel {
     private String Ucode;
     private String PicWidth;
     private String PicHeight;
+    private String Title;
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
 
     public String getID() {
         return ID;

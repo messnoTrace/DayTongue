@@ -9,7 +9,7 @@ import notrace.daytongue.LazyFragment;
 import notrace.daytongue.MyApplication;
 import notrace.daytongue.R;
 import notrace.daytongue.choosepicture.ChoosePictureDemoActivity;
-import notrace.daytongue.commen.RequstHelper;
+import notrace.daytongue.commen.RequestHelper;
 
 
 public class SpaceFragment extends LazyFragment implements View.OnClickListener{
@@ -56,6 +56,6 @@ public class SpaceFragment extends LazyFragment implements View.OnClickListener{
     }
 
     private void loadData(){
-        RequstHelper.getTopic("10","","0", MyApplication.currentUser.getUcode(),"");
+        RequestHelper.getTopic("10", "", "0", MyApplication.currentUser.getUcode(), "");
     }
 }

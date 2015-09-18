@@ -94,6 +94,4 @@ public abstract  class CommomAdapter<T> extends BaseAdapter {
 
 
 
-
-
 }

@@ -83,7 +83,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     public int getHeightPixels() {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        CommonConst.SCREENWIDTH=metrics.heightPixels;
+        CommonConst.SCREENHEIGHT=metrics.heightPixels;
         return metrics.heightPixels;
     }
 

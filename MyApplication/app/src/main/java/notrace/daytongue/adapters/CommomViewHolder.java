@@ -72,7 +72,7 @@ public class CommomViewHolder {
 
     public CommomViewHolder setImageUri(int viewId,String uri){
         ImageView view=getView(viewId);
-        ImageLoader.getInstance().displayImage(uri,view);
+        ImageLoader.getInstance().displayImage(uri, view);
         return  this;
     }
 
@@ -87,6 +87,12 @@ public class CommomViewHolder {
         View view=getView(viewId);
         view.setBackgroundResource(drawable);
         return this;
+    }
+
+    public CommomViewHolder setOnClickListener(int viewId,View.OnClickListener listener){
+        View view=getView(viewId);
+        view.setOnClickListener(listener);
+        return  this;
     }
 
 

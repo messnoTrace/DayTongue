@@ -10,7 +10,7 @@ import notrace.daytongue.BaseActivity;
 import notrace.daytongue.MainActivity;
 import notrace.daytongue.MyApplication;
 import notrace.daytongue.R;
-import notrace.daytongue.commen.RequstHelper;
+import notrace.daytongue.commen.RequestHelper;
 import notrace.daytongue.entitys.response.LoginResult;
 import notrace.daytongue.http.RequestCallBack;
 
@@ -79,15 +79,15 @@ public class LoginActivity extends BaseActivity {
         check();
 
         //// TODO: 2015/9/16  regex check
-        RequstHelper.checkLogin(name, pwd, new RequestCallBack<LoginResult>() {
+        RequestHelper.checkLogin(name, pwd, new RequestCallBack<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
 
-                MyApplication.currentUser=loginResult;
+                MyApplication.currentUser = loginResult;
 
                 //TODO Login success test
 //                startActivity(new Intent(LoginActivity.this,MineCenterActivity.class));
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
 
             }

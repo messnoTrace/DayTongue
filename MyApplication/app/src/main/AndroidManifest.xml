@@ -92,6 +92,14 @@
             android:name=".activitys.OtherPersonDetailActivity"
             android:label="@string/title_activity_other_person_detail" >
         </activity>
+        <activity
+            android:name=".activitys.TopicActivity"
+            android:label="@string/title_activity_topic" >
+        </activity>
+        <activity
+            android:name=".activitys.ImageViewerActivity"
+            android:label="@string/title_activity_image_viewer" >
+        </activity>
     </application>
 
 </manifest>

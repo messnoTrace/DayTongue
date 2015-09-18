@@ -43,6 +43,10 @@ public class CommonConst {
     public  static  final  String URL_ADDPHOTO=HOST+"AddPhoto";
 
     public static  final  String URL_GetRCMDBannerInfo=HOST+"GetRCMDBannerInfo";
+    public static  final  String URL_GetRCMDPhotoInfo=HOST+"GetRCMDPhotoInfo";
+    public static final String   URL_GetRCMDUserInfo=HOST+"GetRCMDUserInfo";
+
+    public  static  final String URL_GetUserPicTopic=HOST+"GetUserPicTopic";
 
 
     public  static int SCREENWIDTH;

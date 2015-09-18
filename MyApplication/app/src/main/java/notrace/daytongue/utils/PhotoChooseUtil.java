@@ -24,7 +24,7 @@ import notrace.daytongue.R;
 import notrace.daytongue.choosepicture.ChoosePicturePopWindow;
 import notrace.daytongue.choosepicture.ImageCropActivity;
 import notrace.daytongue.commen.PathConsts;
-import notrace.daytongue.commen.RequstHelper;
+import notrace.daytongue.commen.RequestHelper;
 
 /**
  * Created by notrace on 2015/9/17.
@@ -178,7 +178,7 @@ public class PhotoChooseUtil implements View.OnClickListener{
                             try {
 
                                 String str=FileUtils.base64encode(file);
-                                RequstHelper.upLoadImage(str, MyApplication.currentUser.getUcode(),"JPEG");
+                                RequestHelper.upLoadImage(str, MyApplication.currentUser.getUcode(), "JPEG");
                             }catch (Exception e)
                             {
 
