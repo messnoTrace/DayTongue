@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
     >
 
 
@@ -48,21 +49,18 @@
         android:layout_margin="@dimen/activity_horizontal_margin"
         >
 
-        <TextView
-            android:id="@+id/tv_addcomment_content"
+
+        <emojicon.EmojiconEditText
+            android:id="@+id/editEmojicon"
+            emojicon:emojiconSize="28sp"
             android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:maxLength="150"
+            android:maxLines="8"
             android:lines="8"
-            android:maxLines="8"/>
-
-
-
+            android:layout_height="wrap_content"/>
         <TextView
 
+            android:layout_below="@id/editEmojicon"
             android:id="@+id/tv_addcomment_text"
-            android:layout_below="@id/tv_addcomment_content"
             android:text="文本"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,9 +68,9 @@
 
         <TextView
 
+            android:layout_below="@id/editEmojicon"
             android:id="@+id/tv_addcomment_face"
             android:text="表情"
-            android:layout_below="@id/tv_addcomment_content"
             android:layout_width="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
@@ -80,7 +78,10 @@
     </RelativeLayout>
 
 
-
+    <FrameLayout
+        android:id="@+id/emojicons"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"/>
 
 
 

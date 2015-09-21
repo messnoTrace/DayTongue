@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import notrace.daytongue.entitys.Banner;
+import notrace.daytongue.entitys.Comment;
 import notrace.daytongue.entitys.Comments;
 import notrace.daytongue.entitys.Topics;
 import notrace.daytongue.entitys.response.BaseResult;
@@ -479,6 +480,11 @@ public class RequestHelper {
     }
 
 
+    /**
+     * get commment ok
+     * @param code
+     * @param callBack
+     */
 
     public static void getComment(final String code, final RequestCallBack<Comments>callBack)
     {
@@ -493,7 +499,7 @@ public class RequestHelper {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Log.d("=====================",volleyError.toString());
+                Log.d("=====================", volleyError.toString());
             }
         }){
             @Override
@@ -517,8 +523,75 @@ public class RequestHelper {
 
 
 
+    //TODO 500
+    public static void addCommentReturn(final Comment comment){
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_ADDCOMMENTRETURN, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                Log.d("=====================",s);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d("=====================",volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String ,String>params=new HashMap<>();
+                params.put("comXml", "<Comment><FCode>"
+                        +comment.getFCode()+"</FCode><CType>"
+                        + comment.getCType()+"</CType><ImgCode>"
+                        +comment.getImgCode()+"</ImgCode><UCode>"
+                        +comment.getUCode()+"</UCode><Contents>"
+                        +comment.getContents()+"</Contents><CreateDate>"
+                                +"<img></img>"
+                        +comment.getCreateDate()+"</CreateDate><NickName>"
+                        +comment.getNickName()+"</NickName><UserHead>"
+                        +comment.getUserHead()+"</UserHead><UImgCode>"
+                        +comment.getUImgCode()+"</UImgCode></Comment>"
+                );
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+
+        VolleyRequest.getInstance().getQue().add(request);
+    }
 
 
+
+
+
+
+    //TODO  no data
+    public static void getOccupations(){
+
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GetOccupations, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                Log.d("==========",s);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d("==========",volleyError.toString());
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String ,String>params=new HashMap<>();
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+        VolleyRequest.getInstance().getQue().add(request);
+
+    }
 
 
 

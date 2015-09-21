@@ -18,4 +18,8 @@
     <string name="title_activity_image_viewer">ImageViewerActivity</string>
     <string name="title_activity_comment">CommentActivity</string>
     <string name="title_activity_add_comment">AddCommentActivity</string>
+
+    <string name="hint">Type emoji here</string>
+    <string name="i_love_emojicon">I \ue32d emoji_1f47f</string>
+    <string name="use_system_default">Use system default emojicon</string>
 </resources>

@@ -50,6 +50,8 @@ public class CommonConst {
     public static  final  String URL_GETCOMMENT=HOST+"GetComment";
 
 
+    public static final String URL_GetOccupations=HOST+"GetOccupations";
+
     public  static int SCREENWIDTH;
     public static  int SCREENHEIGHT;
 

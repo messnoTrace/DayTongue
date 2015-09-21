@@ -4,6 +4,7 @@ import android.view.View;
 
 import notrace.daytongue.LazyFragment;
 import notrace.daytongue.R;
+import notrace.daytongue.commen.RequestHelper;
 
 
 public class CategoryFragment extends LazyFragment {
@@ -26,5 +27,13 @@ public class CategoryFragment extends LazyFragment {
     @Override
     protected void onViewCreated(View parentView) {
 
+
+        loadData();
+    }
+
+    private  void loadData()
+    {
+
+        RequestHelper.getOccupations();
     }
 }

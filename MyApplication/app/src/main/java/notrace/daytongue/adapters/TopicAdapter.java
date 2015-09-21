@@ -152,7 +152,6 @@ public class TopicAdapter extends CommomAdapter<Topic> {
             @Override
             public void onSuccess(String s) {
 
-
                 GoodResult result= XMLParser.xml2GoodResult(s);
 
 //                Log.d("================",result.getString());
