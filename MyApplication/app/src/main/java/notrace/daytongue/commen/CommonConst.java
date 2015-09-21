@@ -23,7 +23,7 @@ public class CommonConst {
     public static final  String URL_SENDMESSAGE="SendMessage";
     public  static  final  String URL_GETTOPIC =HOST+"GetTopic";
     public static  final  String URL_FILEUPLOADIMAGE=HOST+"FileUploadImage";
-    public static  final  String URL_GETCOMMENT=HOST+"GetComment";
+
 
     public  static  final  String URL_ADDCOMMENT=HOST+"AddComment";
 
@@ -47,6 +47,7 @@ public class CommonConst {
     public static final String   URL_GetRCMDUserInfo=HOST+"GetRCMDUserInfo";
 
     public  static  final String URL_GetUserPicTopic=HOST+"GetUserPicTopic";
+    public static  final  String URL_GETCOMMENT=HOST+"GetComment";
 
 
     public  static int SCREENWIDTH;

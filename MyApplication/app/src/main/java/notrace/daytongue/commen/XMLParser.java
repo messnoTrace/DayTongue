@@ -3,6 +3,8 @@ package notrace.daytongue.commen;
 import com.thoughtworks.xstream.XStream;
 
 import notrace.daytongue.entitys.Banner;
+import notrace.daytongue.entitys.Comment;
+import notrace.daytongue.entitys.Comments;
 import notrace.daytongue.entitys.Contents;
 import notrace.daytongue.entitys.Photo;
 import notrace.daytongue.entitys.Topic;
@@ -46,9 +48,20 @@ public class XMLParser {
         XStream xStream=new XStream();
 
         //TODO erro
-        xStream.alias("string",GoodResult.class);
+        xStream.alias("string", GoodResult.class);
 
         GoodResult result= (GoodResult) xStream.fromXML(xml);
         return  result;
+    }
+
+    public static Comments xml2Comments(String xml){
+
+        XStream xStream=new XStream();
+        xStream.alias("root",Comments.class);
+        xStream.alias("Comment", Comment.class);
+        xStream.aliasField("Comment",Comments.class,"item");
+        Comments comments= (Comments) xStream.fromXML(xml);
+        return  comments;
+
     }
 }

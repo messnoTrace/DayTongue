@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import notrace.daytongue.entitys.Banner;
+import notrace.daytongue.entitys.Comments;
 import notrace.daytongue.entitys.Topics;
 import notrace.daytongue.entitys.response.BaseResult;
 import notrace.daytongue.entitys.response.LoginResult;
@@ -479,6 +480,40 @@ public class RequestHelper {
 
 
 
+    public static void getComment(final String code, final RequestCallBack<Comments>callBack)
+    {
+        StringRequest request= new StringRequest(Request.Method.POST, CommonConst.URL_GETCOMMENT, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                Comments comments=XMLParser.xml2Comments(s);
+                Log.d("=====================",s);
+                callBack.onSuccess(comments);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d("=====================",volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>params=new HashMap<>();
+                params.put("code",code);
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+
+        VolleyRequest.getInstance().getQue().add(request);
+
+
+//                Map<String,String>params=new HashMap<>();
+//                params.put("code",code);
+//                params.put("tokenKey",CommonConst.TOKENID);
+//        baserequest(CommonConst.URL_GETCOMMENT,params,callBack);
+
+    }
 
 
 
@@ -527,13 +562,16 @@ public class RequestHelper {
 
 
 
+    //TODO  check check check
 
-//    private void baserequest(String url,final Map<String,String>params,final RequestCallBack<T>callBack){
+//    private static   <T> void baserequest(String url,final Map<String,String>params,final RequestCallBack<T>callBack){
 //        StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 //            @Override
 //            public void onResponse(String s) {
 //
-//               T t=XmlUtils.xmlToBean(s,T.class);
+////                Log.d("==========",((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0].toString());
+////               T t=XmlUtils.xmlToBean(s,(Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+//                T t=XmlUtils.xmlToBean(s,(Class<T>)callBack.getClass());
 //                callBack.onSuccess(t);
 //
 //            }

@@ -159,12 +159,11 @@
          />
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcv_item_space_commentitem"
+    <notrace.daytongue.views.UnScrollableListView
+        android:id="@+id/uslv_item_space_commentitem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        ></android.support.v7.widget.RecyclerView>
+        ></notrace.daytongue.views.UnScrollableListView>
     <include layout="@layout/view_divider_match_parent"/>
 
     <TextView

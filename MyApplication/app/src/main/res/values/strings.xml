@@ -16,4 +16,6 @@
     <string name="title_activity_other_person_detail">OtherPersonDetailActivity</string>
     <string name="title_activity_topic">TopicActivity</string>
     <string name="title_activity_image_viewer">ImageViewerActivity</string>
+    <string name="title_activity_comment">CommentActivity</string>
+    <string name="title_activity_add_comment">AddCommentActivity</string>
 </resources>
