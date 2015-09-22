@@ -108,6 +108,14 @@
             android:name=".activitys.AddCommentActivity"
             android:label="@string/title_activity_add_comment" >
         </activity>
+        <activity
+            android:name=".activitys.FindFriendActivity"
+            android:label="@string/title_activity_find_friend" >
+        </activity>
+        <activity
+            android:name=".activitys.CollectionActivity"
+            android:label="@string/title_activity_collection" >
+        </activity>
     </application>
 
 </manifest>

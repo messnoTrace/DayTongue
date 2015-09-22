@@ -9,13 +9,22 @@ import notrace.daytongue.entitys.Contents;
 import notrace.daytongue.entitys.Photo;
 import notrace.daytongue.entitys.Topic;
 import notrace.daytongue.entitys.Topics;
+import notrace.daytongue.entitys.Users;
+import notrace.daytongue.entitys.response.GetUserInfoResult;
 import notrace.daytongue.entitys.response.GoodResult;
 import notrace.daytongue.entitys.response.RCMDModel;
+import notrace.daytongue.entitys.response.UserList;
 
 /**
  * Created by notrace on 2015/9/18.
  */
 public class XMLParser {
+
+    /**
+     * get banner info
+     * @param xml
+     * @return
+     */
     public static Banner xml2Banner(String xml){
         XStream xStream=new XStream();
 
@@ -28,6 +37,11 @@ public class XMLParser {
         return  banner;
     }
 
+    /**
+     * get topics
+     * @param xml
+     * @return
+     */
     public static Topics xml2Topics(String xml){
         XStream xStream=new XStream();
         xStream.alias("root",Topics.class);
@@ -44,6 +58,11 @@ public class XMLParser {
         return  topics;
     }
 
+    /**
+     * get goodresult
+     * @param xml
+     * @return
+     */
     public  static GoodResult xml2GoodResult(String xml){
         XStream xStream=new XStream();
 
@@ -54,14 +73,47 @@ public class XMLParser {
         return  result;
     }
 
+    /**
+     *
+     * get comment  list
+     * @param xml
+     * @return
+     */
     public static Comments xml2Comments(String xml){
 
         XStream xStream=new XStream();
         xStream.alias("root",Comments.class);
         xStream.alias("Comment", Comment.class);
-        xStream.aliasField("Comment",Comments.class,"item");
+        xStream.aliasField("Comment", Comments.class, "item");
         Comments comments= (Comments) xStream.fromXML(xml);
         return  comments;
 
+    }
+
+    /**
+     * get userinfo
+     * @param xml
+     * @return
+     */
+    public static GetUserInfoResult xml2UserInfo(String xml){
+        XStream xStream=new XStream();
+        xStream.alias("GetUserInfoResult", GetUserInfoResult.class);
+        GetUserInfoResult result= (GetUserInfoResult) xStream.fromXML(xml);
+        return result;
+    }
+
+
+    /**
+     * get recmond friend and search friend list
+     * @param xml
+     * @return
+     */
+    public static UserList xml2UserList(String xml){
+        XStream xStream=new XStream();
+        xStream.alias("root",UserList.class);
+        xStream.alias("Users", Users.class);
+        xStream.aliasField("item",UserList.class,"item");
+        UserList list= (UserList) xStream.fromXML(xml);
+        return  list;
     }
 }

@@ -19,6 +19,7 @@ import notrace.daytongue.MyApplication;
 import notrace.daytongue.R;
 import notrace.daytongue.activitys.CommentActivity;
 import notrace.daytongue.activitys.ImageViewerActivity;
+import notrace.daytongue.activitys.OtherPersonCenterActivity;
 import notrace.daytongue.commen.CommonConst;
 import notrace.daytongue.commen.RequestHelper;
 import notrace.daytongue.commen.XMLParser;
@@ -48,6 +49,7 @@ public class TopicAdapter extends CommomAdapter<Topic> {
         final  int p=position;
         currentItem=position;
         mHolder.setImageUri(R.id.civ_item_space_head, item.getUserHead());
+        mHolder.setOnClickListener(R.id.civ_item_space_head,listener);
         mHolder.setText(R.id.tv_item_space_terminal, item.getCFrom());
         mHolder.setText(R.id.tv_item_space_time, item.getCreateDate());
         mHolder.setText(R.id.tv_item_space_name, item.getNickName());
@@ -141,6 +143,10 @@ public class TopicAdapter extends CommomAdapter<Topic> {
 
                 case R.id.tv_item_space_report:
                     //report
+                    break;
+
+                case R.id.civ_item_space_head:
+                    mContext.startActivity(new Intent(mContext, OtherPersonCenterActivity.class).putExtra("ucode",mDatas.get(currentItem).getUCode()));
                     break;
 
             }

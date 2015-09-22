@@ -13,16 +13,16 @@ public class GetUserInfoResult {
     private String Telephone;
     private String Email;
     private boolean IsDel;
-    private boolean isLock;
-    private boolean isAdmin;
+    private boolean IsLock;
+    private boolean IsAdmin;
     private String ThirdPartyKey;
     private  String RegFrom;
     private String IP;
     private String LastUpdateDate;
     private String LastLoginDate;
-    private String CreateDate;
+    private String Createdate;
+    private  String CreateCode;
     private boolean IsPublic;
-    private String LostUpdateDate;
 
     public String getStatus() {
         return Status;
@@ -97,19 +97,19 @@ public class GetUserInfoResult {
     }
 
     public boolean isLock() {
-        return isLock;
+        return IsLock;
     }
 
     public void setIsLock(boolean isLock) {
-        this.isLock = isLock;
+        IsLock = isLock;
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return IsAdmin;
     }
 
     public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+        IsAdmin = isAdmin;
     }
 
     public String getThirdPartyKey() {
@@ -152,12 +152,20 @@ public class GetUserInfoResult {
         LastLoginDate = lastLoginDate;
     }
 
-    public String getCreateDate() {
-        return CreateDate;
+    public String getCreatedate() {
+        return Createdate;
     }
 
-    public void setCreateDate(String createDate) {
-        CreateDate = createDate;
+    public void setCreatedate(String createdate) {
+        Createdate = createdate;
+    }
+
+    public String getCreateCode() {
+        return CreateCode;
+    }
+
+    public void setCreateCode(String createCode) {
+        CreateCode = createCode;
     }
 
     public boolean isPublic() {
@@ -175,4 +183,8 @@ public class GetUserInfoResult {
     public void setLostUpdateDate(String lostUpdateDate) {
         LostUpdateDate = lostUpdateDate;
     }
+
+    private String LostUpdateDate;
+
+
 }

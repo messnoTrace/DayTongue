@@ -22,4 +22,6 @@
     <string name="hint">Type emoji here</string>
     <string name="i_love_emojicon">I \ue32d emoji_1f47f</string>
     <string name="use_system_default">Use system default emojicon</string>
+    <string name="title_activity_find_friend">FindFriendActivity</string>
+    <string name="title_activity_collection">CollectionActivity</string>
 </resources>

@@ -16,7 +16,9 @@ import notrace.daytongue.entitys.Comment;
 import notrace.daytongue.entitys.Comments;
 import notrace.daytongue.entitys.Topics;
 import notrace.daytongue.entitys.response.BaseResult;
+import notrace.daytongue.entitys.response.GetUserInfoResult;
 import notrace.daytongue.entitys.response.LoginResult;
+import notrace.daytongue.entitys.response.UserList;
 import notrace.daytongue.http.RequestCallBack;
 import notrace.daytongue.http.VolleyRequest;
 import notrace.daytongue.xmlutils.XmlUtils;
@@ -190,6 +192,38 @@ public class RequestHelper {
 
     }
 
+
+
+
+    public  static void getUserInfo(final String ucode, final RequestCallBack<GetUserInfoResult>callBack){
+
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GETUSERINFO, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+//                GetUserInfoResult result=XmlUtils.xmlToBean(s,GetUserInfoResult.class);
+                GetUserInfoResult result=XMLParser.xml2UserInfo(s);
+                if(result!=null){
+
+                    callBack.onSuccess(result);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                callBack.onFail(volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>params=new HashMap<>();
+                params.put("uCode",ucode);
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+        VolleyRequest.getInstance().getQue().add(request);
+    }
 
     public void postRequest(String url,final HashMap<String,String>params)
     {
@@ -522,6 +556,81 @@ public class RequestHelper {
     }
 
 
+    /**
+     * get recmond user list ok
+     * @param ucode
+     * @param callBack
+     */
+    public static void getUserList(final String ucode,final  RequestCallBack<UserList>callBack){
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GETUSERS, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                UserList list=XMLParser.xml2UserList(s);
+                if(list!=null)
+                {
+                    callBack.onSuccess(list);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+                callBack.onFail(volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>params=new HashMap<>();
+                params.put("uCode",ucode);
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+        VolleyRequest.getInstance().getQue().add(request);
+
+    }
+
+
+    /**
+     * search all user ok
+     * @param key
+     * @param pageIndex
+     * @param ucode
+     * @param callBack
+     */
+    public static void SerchGetAllUsers(final String key , final String pageIndex, final String ucode, final RequestCallBack<UserList>callBack){
+
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_SerchGetAllUsers, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+                UserList list=XMLParser.xml2UserList(s);
+                if(list!=null){
+                    callBack.onSuccess(list);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+                callBack.onFail(volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String ,String>params=new HashMap<>();
+                params.put("key",key);
+                params.put("pageIndex",pageIndex);
+                params.put("uCode",ucode);
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+
+        VolleyRequest.getInstance().getQue().add(request);
+
+    }
 
     //TODO 500
     public static void addCommentReturn(final Comment comment){

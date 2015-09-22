@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <notrace.daytongue.views.CircleImageView
+
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/icon_touxiang"
+        android:id="@+id/civ_item_friend_head"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nick"
+        android:layout_toRightOf="@id/civ_item_friend_head"
+        android:layout_marginTop="18dp"
+        android:id="@+id/tv_item_friend_name"
+        />
+    <TextView
+        android:id="@+id/tv_item_friend_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_item_friend_name"
+        android:layout_below="@id/tv_item_friend_name"
+        android:layout_marginTop="5dp"
+        android:text="sign"
+
+        />
+
+    <TextView
+        android:text="关注"
+        android:id="@+id/tv_item_friend_focus"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>
