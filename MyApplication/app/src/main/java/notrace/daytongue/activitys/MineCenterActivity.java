@@ -10,6 +10,9 @@ import android.widget.TextView;
 import notrace.daytongue.BaseActivity;
 import notrace.daytongue.MyApplication;
 import notrace.daytongue.R;
+import notrace.daytongue.commen.RequestHelper;
+import notrace.daytongue.entitys.response.GetUserInfoResult;
+import notrace.daytongue.http.RequestCallBack;
 import notrace.daytongue.views.CircleImageView;
 
 public class MineCenterActivity extends BaseActivity implements View.OnClickListener{
@@ -20,6 +23,8 @@ public class MineCenterActivity extends BaseActivity implements View.OnClickList
 
     private TextView tv_name,tv_sign,tv_day,tv_foucs,tv_fans;
     private CircleImageView civ_head;
+
+    private GetUserInfoResult userInfo;
 
 
     @Override
@@ -33,8 +38,7 @@ public class MineCenterActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void findViews() {
-//        ((TextView)findViewById(R.id.tv_title)).setText("我的");
-//        findViewById(R.id.iv_navigate_back).setOnClickListener(this);
+
 
         setNavigation("我的");
 
@@ -76,10 +80,7 @@ public class MineCenterActivity extends BaseActivity implements View.OnClickList
     @Override
     public void initData() {
 
-        if(MyApplication.currentUser!=null){
-            tv_name.setText(MyApplication.currentUser.getNickName());
-            com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(MyApplication.currentUser.getUserHead(),civ_head);
-        }
+        loadData();
     }
 
     @Override
@@ -87,9 +88,7 @@ public class MineCenterActivity extends BaseActivity implements View.OnClickList
 
         switch (v.getId())
         {
-//            case R.id.iv_navigate_back:
-//                finish();
-//                break;
+
 
             case R.id.rl_minecenter_attitude:
                 break;
@@ -98,19 +97,62 @@ public class MineCenterActivity extends BaseActivity implements View.OnClickList
                 startActivity(new Intent(MineCenterActivity.this,MineDetailActivity.class));
                 break;
             case R.id.rl_minecenter_collection:
+
+                startActivity(new Intent(MineCenterActivity.this,CollectionActivity.class).putExtra("ucode",userInfo.getUCode()));
                 break;
             case R.id.rl_minecenter_circle:
+
+                startActivity(new Intent(MineCenterActivity.this,CircleActivity.class));
                 break;
             case R.id.rl_minecenter_suggestion:
+                startActivity(new Intent(MineCenterActivity.this,SuggestionActivity.class));
                 break;
             case R.id.rl_minecenter_setting:
+                startActivity(new Intent(MineCenterActivity.this,SettingActivity.class));
                 break;
+
             case R.id.ll_minecenter_daytongue:
+                startActivity(new Intent(MineCenterActivity.this,TopicActivity.class).putExtra("ucode",MyApplication.currentUser.getUcode()));
                 break;
             case R.id.ll_minecenter_fans:
+                startActivity(new Intent(MineCenterActivity.this,FansActivity.class));
                 break;
             case R.id.ll_minecenter_foucs:
+                startActivity(new Intent(MineCenterActivity.this,FoucsActivity.class));
                 break;
         }
+    }
+    private void loadData(){
+
+        RequestHelper.getUserInfo(MyApplication.currentUser.getUcode(), new RequestCallBack<GetUserInfoResult>() {
+            @Override
+            public void onSuccess(GetUserInfoResult getUserInfoResult) {
+
+                if (getUserInfoResult != null) {
+                    userInfo = getUserInfoResult;
+
+                    RequestHelper.GetFriendByUCode(userInfo.getUCode(), "10");
+                    initView();
+                }
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
+
+
+    }
+
+    private void initView()
+    {
+            tv_name.setText(userInfo.getNickName());
+            com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(userInfo.getUserHead(), civ_head);
+
+
+
+
     }
 }

@@ -106,4 +106,12 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         }
 
     }
+
+    public void logOut(){
+       for(int i=0;i<getActivityList().size();i++){
+           getActivityList().get(i).finish();
+
+       }
+
+    }
 }

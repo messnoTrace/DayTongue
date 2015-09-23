@@ -1,0 +1,106 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    >
+    <include layout="@layout/navigate_back"/>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        >
+
+
+        <RelativeLayout
+            android:id="@+id/rl_setting_editpwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navigation_height">
+
+            <ImageView
+                android:id="@+id/ivEditPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_search"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                />
+
+            <TextView
+                android:id="@+id/tvEditPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="修改密码"
+                android:layout_toRightOf="@id/ivEditPwd"
+                android:layout_centerVertical="true"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right_goto"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divide_line_color"
+                android:layout_alignParentBottom="true"
+                android:layout_alignLeft="@id/tvEditPwd"
+                ></View>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_setting_cleancache"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navigation_height">
+
+            <ImageView
+                android:id="@+id/ivCleanCach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_search"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                />
+
+            <TextView
+                android:id="@+id/tvCleanCach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清理缓存"
+                android:layout_toRightOf="@id/ivCleanCach"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:text="清理缓存(0.0Kb)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_setting_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="退出登录"
+        android:gravity="center"
+        />
+
+</LinearLayout>

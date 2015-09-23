@@ -16,6 +16,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -37,6 +38,7 @@ public class  ChoosePictureDemoActivity extends BaseActivity {
 	private File vFile;
 	private String dir_temp;
 	private ChoosePicturePopWindow menuWindow;
+	private TextView tv_cancel,tv_next;
 	
 	
 	private String path;
@@ -72,6 +74,8 @@ public class  ChoosePictureDemoActivity extends BaseActivity {
 	@Override
 	public void findViews() {
 		civ=(CircleImageView) findViewById(R.id.civ);
+		tv_cancel= (TextView) findViewById(R.id.tv_choosepic_cancel);
+		tv_next= (TextView) findViewById(R.id.tv_choosepic_next);
 		
 	}
 
@@ -109,6 +113,13 @@ public class  ChoosePictureDemoActivity extends BaseActivity {
 				startActivity(i);
 
 				break;
+
+				case R.id.tv_choosepic_cancel:
+					finish();
+					break;
+				case R.id.tv_choosepic_next:
+
+					break;
 			}
 		}
 	};

@@ -265,10 +265,8 @@ public class RequestHelper {
         StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_UPDATEPASSWORD, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
-                BaseResult result=XmlUtils.xmlToBean(s,BaseResult.class);
-                if(result!=null&&"0".equals(result.getStatus())){
-                    //// TODO: 2015/9/17  success
-                }
+                BaseResult result=XmlUtils.xmlToBean(s, BaseResult.class);
+
 
             }
         }, new Response.ErrorListener() {
@@ -308,7 +306,7 @@ public class RequestHelper {
             public void onResponse(String s) {
 
 
-                Log.d("TAG",s);
+                Log.d("TAG", s);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -632,6 +630,154 @@ public class RequestHelper {
 
     }
 
+    public  static void GetFriendByUCode(final String ucode, final String pageIndex){
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GetFriendByUCode, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+                Log.d("==============",s);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d("==============",volleyError.toString());
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String>params=new HashMap<>();
+                params.put("ucode",ucode);
+                params.put("tokenKey",CommonConst.TOKENID);
+                params.put("pageIndex",pageIndex);
+                return params;
+            }
+        };
+        VolleyRequest.getInstance().getQue().add(request);
+    }
+
+    /**
+     * nologin OK
+     * @param pageIndex
+     */
+    public static void getNoneLoginTopic(final String pageIndex, final String datetime, final RequestCallBack<Topics>callBack){
+
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GetNoneLoginTopic, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                Topics resutl=XMLParser.xml2Topics(s.trim().replace("&nbsp", ""));
+                if(resutl!=null){
+                    callBack.onSuccess(resutl);
+                }
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+                callBack.onFail(volleyError.toString());
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>params=new HashMap<>();
+                params.put("tokenKey",CommonConst.TOKENID);
+                params.put("pageIndex",pageIndex);
+                params.put("datetime",datetime);
+                return params;
+            }
+        };
+        VolleyRequest.getInstance().getQue().add(request);
+    }
+
+
+    /**
+     * login status get space data ok
+     * @param pageIndex
+     * @param gCode
+     * @param isPerson
+     * @param uCode
+     * @param currentUCode
+     * @param datetime
+     * @param callBack
+     */
+    public static  void getOnlyTopic(final String pageIndex, final String gCode, final String isPerson, final String uCode, final String currentUCode, final String datetime, final RequestCallBack<Topics>callBack){
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GetOnlyTopic, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                Topics resutl=XMLParser.xml2Topics(s.trim().replace("&nbsp", ""));
+                if(resutl!=null){
+                    callBack.onSuccess(resutl);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                callBack.onFail(volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>params=new HashMap<>();
+                params.put("pageIndex",pageIndex);
+                params.put("isPerson",isPerson);
+                params.put("uCode",uCode);
+                params.put("gCode",gCode);
+                params.put("currentUCode",currentUCode);
+                params.put("datetime",datetime);
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+        VolleyRequest.getInstance().getQue().add(request);
+    }
+
+
+    /**
+     * search no data
+     * @param key
+     * @param indexPage
+     * @param uCode
+     * @param callBack
+     */
+    public static void GetOnlyTopiSerch(final String key, final String indexPage, final String uCode, final RequestCallBack<Topics>callBack){
+        StringRequest request =new StringRequest(Request.Method.POST, CommonConst.URL_GetOnlyTopiSerch, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+                Topics resutl=XMLParser.xml2Topics(s.trim().replace("&nbsp", ""));
+                if(resutl!=null){
+                    callBack.onSuccess(resutl);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+                callBack.onFail(volleyError.toString());
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String ,String>params=new HashMap<>();
+                params.put("key",key);
+                params.put("ucode",uCode);
+                params.put("indexpage",indexPage);
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+
+        VolleyRequest.getInstance().getQue().add(request);
+    }
+
     //TODO 500
     public static void addCommentReturn(final Comment comment){
         StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_ADDCOMMENTRETURN, new Response.Listener<String>() {
@@ -654,7 +800,7 @@ public class RequestHelper {
                         + comment.getCType()+"</CType><ImgCode>"
                         +comment.getImgCode()+"</ImgCode><UCode>"
                         +comment.getUCode()+"</UCode><Contents>"
-                        +comment.getContents()+"</Contents><CreateDate>"
+                        +comment.getContents()+"</Contents><p></p><CreateDate>"
                                 +"<img></img>"
                         +comment.getCreateDate()+"</CreateDate><NickName>"
                         +comment.getNickName()+"</NickName><UserHead>"
@@ -783,4 +929,5 @@ public class RequestHelper {
 //
 //        return  null;
 //    }
+
 }

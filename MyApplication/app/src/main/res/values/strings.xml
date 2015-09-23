@@ -24,4 +24,11 @@
     <string name="use_system_default">Use system default emojicon</string>
     <string name="title_activity_find_friend">FindFriendActivity</string>
     <string name="title_activity_collection">CollectionActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_look_around">LookAroundActivity</string>
+    <string name="title_activity_circle">CircleActivity</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_suggestion">SuggestionActivity</string>
+    <string name="title_activity_fans">FansActivity</string>
+    <string name="title_activity_foucs">FoucsActivity</string>
 </resources>

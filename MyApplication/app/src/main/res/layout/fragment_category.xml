@@ -1,10 +1,36 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="notrace.daytongue.fragments.CategoryFragment">
+    android:orientation="vertical"
+    android:background="@color/background"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="@dimen/navigation_height">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分类"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
+
+    <GridView
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:id="@+id/gv_category"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:gravity="left"
+        android:listSelector="@color/white"
+        android:verticalSpacing="10dp"
+        >
+
+    </GridView>
+
+
+</LinearLayout>

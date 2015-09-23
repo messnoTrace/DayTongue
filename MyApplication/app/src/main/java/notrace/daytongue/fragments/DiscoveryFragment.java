@@ -12,6 +12,7 @@ import java.util.List;
 import notrace.daytongue.LazyFragment;
 import notrace.daytongue.R;
 import notrace.daytongue.activitys.FindFriendActivity;
+import notrace.daytongue.activitys.LookAroundActivity;
 import notrace.daytongue.adapters.CommomAdapter;
 import notrace.daytongue.adapters.CommomViewHolder;
 import notrace.daytongue.entitys.GridEntity;
@@ -36,6 +37,11 @@ public class DiscoveryFragment extends LazyFragment {
                     case 0:
                         break;
                     case 1:
+
+                        //lookaround
+
+                        startActivity(new Intent(mContext, LookAroundActivity.class));
+
                         break;
 
                     case 2:

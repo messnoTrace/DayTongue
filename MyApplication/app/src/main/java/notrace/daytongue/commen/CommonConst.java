@@ -55,6 +55,13 @@ public class CommonConst {
     public static  final String URL_GETUSERS=HOST+"GetUsers ";
     public static  final String URL_SerchGetAllUsers=HOST+"SerchGetAllUsers";
 
+    public static final  String URL_GetNoneLoginTopic=HOST+"GetNoneLoginTopic";
+    public static final  String URL_GetOnlyTopic=HOST+"GetOnlyTopic";
+
+    public static final String URL_GetOnlyTopiSerch=HOST+"GetOnlyTopiSerch";
+
+    public static final  String URL_GetFriendByUCode=HOST+"GetFriendByUCode";
+
     public  static int SCREENWIDTH;
     public static  int SCREENHEIGHT;
 

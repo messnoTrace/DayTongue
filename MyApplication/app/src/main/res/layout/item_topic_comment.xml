@@ -15,7 +15,7 @@
         />
 
 
-    <TextView
+    <emojicon.EmojiconTextView
         android:text="name"
         android:id="@+id/tv_item_topic_comment_name"
         android:layout_toRightOf="@id/civ_item_topic_comment_head"

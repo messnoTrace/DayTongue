@@ -31,7 +31,7 @@
         android:layout_below="@id/tv_item_comment_name"
         android:layout_marginTop="5dp"
         android:layout_height="wrap_content" />
-    <TextView
+    <emojicon.EmojiconTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="comment"

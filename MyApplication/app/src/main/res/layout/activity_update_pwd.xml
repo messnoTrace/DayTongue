@@ -4,7 +4,7 @@
     android:orientation="vertical"
     >
 
-    <include layout="@layout/navigate_onetextview"/>
+    <include layout="@layout/navigate_back"/>
 
 
 
@@ -24,7 +24,7 @@
 
         <EditText
 
-            android:id="@+id/et_old_pwd"
+            android:id="@+id/et_update_old_pwd"
             android:hint="当前密码"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

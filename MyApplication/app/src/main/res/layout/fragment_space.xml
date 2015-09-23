@@ -2,10 +2,12 @@
 xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
 android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background"
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="@dimen/navigation_height">
 
         <ImageView
@@ -26,6 +28,7 @@ android:layout_height="match_parent"
             />
 
         <ImageView
+            android:id="@+id/iv_space_personcenter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_launcher"
@@ -36,4 +39,26 @@ android:layout_height="match_parent"
 
     </RelativeLayout>
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/srfl_space"
+        android:layout_marginTop="1dp"
+
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:scrollbars="none"
+            >
+
+            <notrace.daytongue.views.UnScrollableListView
+                android:id="@+id/uslv_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></notrace.daytongue.views.UnScrollableListView>
+
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

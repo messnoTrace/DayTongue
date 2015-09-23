@@ -116,6 +116,34 @@
             android:name=".activitys.CollectionActivity"
             android:label="@string/title_activity_collection" >
         </activity>
+        <activity
+            android:name=".activitys.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name=".activitys.LookAroundActivity"
+            android:label="@string/title_activity_look_around" >
+        </activity>
+        <activity
+            android:name=".activitys.CircleActivity"
+            android:label="@string/title_activity_circle" >
+        </activity>
+        <activity
+            android:name=".activitys.SettingActivity"
+            android:label="@string/title_activity_setting" >
+        </activity>
+        <activity
+            android:name=".activitys.SuggestionActivity"
+            android:label="@string/title_activity_suggestion" >
+        </activity>
+        <activity
+            android:name=".activitys.FansActivity"
+            android:label="@string/title_activity_fans" >
+        </activity>
+        <activity
+            android:name=".activitys.FoucsActivity"
+            android:label="@string/title_activity_foucs" >
+        </activity>
     </application>
 
 </manifest>

@@ -21,7 +21,7 @@
         <EditText
             android:id="@+id/et_login_name"
             android:layout_width="match_parent"
-            android:text="13051322322"
+            android:text="18500090111"
             android:layout_height="wrap_content"
             />
 

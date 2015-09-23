@@ -6,17 +6,21 @@ import android.view.View;
 import notrace.daytongue.BaseActivity;
 import notrace.daytongue.R;
 
-public class CollectionActivity extends BaseActivity {
+public class SuggestionActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collection);
+        setContentView(R.layout.activity_suggestion);
+        findViews();
+        bindListener();
+        initData();
     }
 
     @Override
     public void findViews() {
 
+        setNavigation("意见反馈");
     }
 
     @Override
@@ -28,6 +32,7 @@ public class CollectionActivity extends BaseActivity {
     public void initData() {
 
     }
+
 
     @Override
     public void onClick(View v) {
