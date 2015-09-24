@@ -103,7 +103,7 @@ public class TopicAdapter extends CommomAdapter<Topic> {
         tvReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
             }
         });
 
