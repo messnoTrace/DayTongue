@@ -7,7 +7,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import notrace.daytongue.R;
@@ -25,7 +25,11 @@ public class MyAdapter extends ImageCommonAdapter<String>
 	/**
 	 * 用户选择的图片，存储为图片的完整路径
 	 */
-	public static List<String> mSelectedImage = new LinkedList<String>();
+	private  List<String> mSelectedImage = new ArrayList<String>();
+
+	public List<String> getmSelectedImage() {
+		return mSelectedImage;
+	}
 
 	/**
 	 * 文件夹路径
@@ -124,7 +128,7 @@ public class MyAdapter extends ImageCommonAdapter<String>
 		this.imageSelectListener =mListener;
 	}
 	public  void clearList(){
-		mSelectedImage=new LinkedList<String>();
+		mSelectedImage=new ArrayList<>();
 		count=0;
 	}
 }

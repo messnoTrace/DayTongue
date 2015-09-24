@@ -31,4 +31,5 @@
     <string name="title_activity_suggestion">SuggestionActivity</string>
     <string name="title_activity_fans">FansActivity</string>
     <string name="title_activity_foucs">FoucsActivity</string>
+    <string name="title_activity_send_setting">SendSettingActivity</string>
 </resources>

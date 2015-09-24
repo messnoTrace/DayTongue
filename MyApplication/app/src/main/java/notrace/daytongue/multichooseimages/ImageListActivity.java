@@ -2,6 +2,7 @@ package notrace.daytongue.multichooseimages;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,9 +31,15 @@ import java.util.List;
 
 import notrace.daytongue.BaseActivity;
 import notrace.daytongue.R;
+import notrace.daytongue.choosepicture.ChoosePictureDemoActivity;
 
 public class ImageListActivity extends BaseActivity implements ListImageDirPopupWindow.OnImageDirSelected {
 
+
+
+
+    private ImageView iv_back;
+    private TextView tv_ok;
 
     private ProgressDialog mProgressDialog;
     /**
@@ -112,6 +120,9 @@ public class ImageListActivity extends BaseActivity implements ListImageDirPopup
 
         mBottomLy = (RelativeLayout) findViewById(R.id.id_bottom_ly);
         haseChoose= (TextView) findViewById(R.id.tv_choosed);
+
+        iv_back= (ImageView) findViewById(R.id.iv_imagelist_back);
+        tv_ok= (TextView) findViewById(R.id.tv_imagelist_ok);
     }
 
     @Override
@@ -121,10 +132,15 @@ public class ImageListActivity extends BaseActivity implements ListImageDirPopup
                 */
         mBottomLy.setOnClickListener(this);
 
+        iv_back.setOnClickListener(this);
+        tv_ok.setOnClickListener(this);
+
+
     }
 
     @Override
     public void initData() {
+        totalCount=getIntent().getIntExtra("count",0);
         getImageList();
     }
 
@@ -143,6 +159,12 @@ public class ImageListActivity extends BaseActivity implements ListImageDirPopup
         getWindow().setAttributes(lp);
 
         break;
+        case R.id.iv_imagelist_back:
+            finish();
+            break;
+        case R.id.tv_imagelist_ok:
+            ok();
+            break;
 }
     }
 
@@ -333,4 +355,12 @@ public class ImageListActivity extends BaseActivity implements ListImageDirPopup
         }).start();
     }
 
+
+    private void ok(){
+        ArrayList<String> list= (ArrayList<String>)mAdapter.getmSelectedImage();
+        Intent intent=new Intent();
+        intent.putStringArrayListExtra("piclist",list);
+        setResult(ChoosePictureDemoActivity.RESULT_CHOOSEPIC,intent);
+        finish();
+    }
 }

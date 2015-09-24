@@ -5,7 +5,6 @@ package notrace.daytongue.commen;
  */
 public class CommonConst {
 
-
 //    public static final String HOST="http://218.241.155.12:808/MainPortal.asmx/";
     public static final String HOST=" http://115.28.91.139:8080/MainPortal.asmx/";
     public static final String TOKENID="FE4311EB-330B-4007-BAFD-6A844F4D21C7";
@@ -61,6 +60,8 @@ public class CommonConst {
     public static final String URL_GetOnlyTopiSerch=HOST+"GetOnlyTopiSerch";
 
     public static final  String URL_GetFriendByUCode=HOST+"GetFriendByUCode";
+
+    public static final  String URL_MANAGECOLLECTION=HOST+"ManageCollections";
 
     public  static int SCREENWIDTH;
     public static  int SCREENHEIGHT;

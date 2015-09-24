@@ -144,6 +144,10 @@
             android:name=".activitys.FoucsActivity"
             android:label="@string/title_activity_foucs" >
         </activity>
+        <activity
+            android:name=".activitys.SendSettingActivity"
+            android:label="@string/title_activity_send_setting" >
+        </activity>
     </application>
 
 </manifest>

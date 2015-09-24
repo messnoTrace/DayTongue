@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -22,12 +23,10 @@ import notrace.daytongue.activitys.ImageViewerActivity;
 import notrace.daytongue.activitys.OtherPersonCenterActivity;
 import notrace.daytongue.commen.CommonConst;
 import notrace.daytongue.commen.RequestHelper;
-import notrace.daytongue.commen.XMLParser;
 import notrace.daytongue.entitys.Comment;
 import notrace.daytongue.entitys.Comments;
 import notrace.daytongue.entitys.Photo;
 import notrace.daytongue.entitys.Topic;
-import notrace.daytongue.entitys.response.GoodResult;
 import notrace.daytongue.http.RequestCallBack;
 import notrace.daytongue.views.UnScrollableGridView;
 import notrace.daytongue.views.UnScrollableListView;
@@ -44,24 +43,69 @@ public class TopicAdapter extends CommomAdapter<Topic> {
         super(context, mDatas, mItemLayoutId);
     }
 
+    private CommomViewHolder currentHolder;
     @Override
-    public void convert(CommomViewHolder mHolder, Topic item, int position) {
+    public void convert(final CommomViewHolder mHolder, Topic item, int position) {
         final  int p=position;
         currentItem=position;
+        currentHolder=mHolder;
         mHolder.setImageUri(R.id.civ_item_space_head, item.getUserHead());
-        mHolder.setOnClickListener(R.id.civ_item_space_head,listener);
+        mHolder.setOnClickListener(R.id.civ_item_space_head, listener);
         mHolder.setText(R.id.tv_item_space_terminal, item.getCFrom());
         mHolder.setText(R.id.tv_item_space_time, item.getCreateDate());
         mHolder.setText(R.id.tv_item_space_name, item.getNickName());
 
 
-        mHolder.setOnClickListener(R.id.tv_item_space_good,listener);
-        mHolder.setOnClickListener(R.id.tv_item_space_comment,listener);
+//        mHolder.setOnClickListener(R.id.tv_item_space_good, listener);
+        mHolder.setOnClickListener(R.id.tv_item_space_comment, listener);
         mHolder.setOnClickListener(R.id.tv_item_space_collection,listener);
         mHolder.setOnClickListener(R.id.tv_item_space_delete,listener);
-        mHolder.setOnClickListener(R.id.tv_item_space_report,listener);
+        mHolder.setOnClickListener(R.id.tv_item_space_report, listener);
 
-//                tv_item_space_comment,tv_item_space_collection,tv_item_space_delete,tv_item_space_report
+
+        //add good
+        TextView tvGood= (TextView) mHolder.getConvertView().findViewById(R.id.tv_item_space_good);
+        tvGood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addGood(mHolder);
+            }
+        });
+
+
+
+
+        //collection
+        TextView tvCollection= (TextView) mHolder.getConvertView().findViewById(R.id.tv_item_space_collection);
+        tvCollection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
+        //delete
+        TextView tvDelete= (TextView) mHolder.getConvertView().findViewById(R.id.tv_item_space_delete);
+
+        tvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
+        //report
+        TextView tvReport= (TextView) mHolder.getConvertView().findViewById(R.id.tv_item_space_report);
+        tvReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
 
 
 
@@ -122,7 +166,7 @@ public class TopicAdapter extends CommomAdapter<Topic> {
                 case R.id.tv_item_space_good:
 
                     //good
-                    addGood();
+                    addGood(currentHolder);
 
                     break;
 
@@ -153,14 +197,23 @@ public class TopicAdapter extends CommomAdapter<Topic> {
         }
     };
 
-    private void addGood(){
+    private void addGood(final CommomViewHolder mHolder){
         RequestHelper.addGood(mDatas.get(currentItem).getTCode(), "2", MyApplication.currentUser.getUcode(), "4", new RequestCallBack<String>() {
             @Override
             public void onSuccess(String s) {
 
-                GoodResult result= XMLParser.xml2GoodResult(s);
+//                GoodResult result= XMLParser.xml2GoodResult(s);
 
+                String[]s1=s.split(">");
 //                Log.d("================",result.getString());
+                String str=s1[s1.length-1];
+                String status=str.substring(0,1);
+                Log.d("================", status);
+
+
+                if(Integer.valueOf(status)>0){
+                    mHolder.setText(R.id.tv_item_space_good,"取消赞");
+                }
             }
 
             @Override
@@ -178,12 +231,12 @@ public class TopicAdapter extends CommomAdapter<Topic> {
                     @Override
                     public void onSuccess(Comments comments) {
 
-                        List<Comment>list_comment=new ArrayList<Comment>();
+                        List<Comment> list_comment = new ArrayList<Comment>();
 
-                        if(comments.getItem().size()<=5){
-                            list_comment=comments.getItem();
-                        }else {
-                            for(int i=0;i<4;i++){
+                        if (comments.getItem().size() <= 5) {
+                            list_comment = comments.getItem();
+                        } else {
+                            for (int i = 0; i < 4; i++) {
                                 list_comment.add(comments.getItem().get(i));
                             }
                         }
@@ -198,15 +251,15 @@ public class TopicAdapter extends CommomAdapter<Topic> {
                         };
                         uslv.setAdapter(adapter_comment);
 
-                        if(list_comment.size()>=1){
-                            tvCount.setText("查看剩下"+list_comment.size()+"条评论");
-                        }else {
+                        if (list_comment.size() >= 1) {
+                            tvCount.setText("查看剩下" + list_comment.size() + "条评论");
+                        } else {
                             tvCount.setText("暂无评论");
                         }
                         tvCount.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                mContext.startActivity(new Intent(mContext, CommentActivity.class).putExtra("tcode",mDatas.get(currentItem).getTCode()));
+                                mContext.startActivity(new Intent(mContext, CommentActivity.class).putExtra("tcode", mDatas.get(currentItem).getTCode()));
                             }
                         });
                     }
@@ -216,6 +269,9 @@ public class TopicAdapter extends CommomAdapter<Topic> {
 
                     }
                 });
-
     }
+
+    private void collection(){}
+    private void delete(){}
+    private void report(){}
 }

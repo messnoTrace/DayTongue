@@ -80,9 +80,9 @@ public class MyApplication extends Application {
             dirFile.mkdirs();
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.ic_launcher) // resource or drawable
-                .showImageForEmptyUri(R.mipmap.ic_launcher) // resource or drawable
-                .showImageOnFail(R.mipmap.ic_launcher) // resource or drawable
+                .showImageOnLoading(R.drawable.ic_stub) // resource or drawable
+                .showImageForEmptyUri(R.drawable.ic_error) // resource or drawable
+                .showImageOnFail(R.drawable.ic_error) // resource or drawable
                 .resetViewBeforeLoading(false)  // default
                 .cacheInMemory(true) // default
                 .cacheOnDisk(true) // default

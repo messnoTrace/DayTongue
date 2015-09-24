@@ -16,19 +16,25 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import notrace.daytongue.BaseActivity;
 import notrace.daytongue.R;
+import notrace.daytongue.activitys.SendSettingActivity;
+import notrace.daytongue.adapters.Adapter_choosepic;
 import notrace.daytongue.commen.PathConsts;
 import notrace.daytongue.multichooseimages.ImageListActivity;
 import notrace.daytongue.utils.FileDownloadUtil;
 import notrace.daytongue.views.CircleImageView;
+import notrace.daytongue.views.UnScrollableGridView;
 
 
 public class  ChoosePictureDemoActivity extends BaseActivity {
@@ -39,6 +45,13 @@ public class  ChoosePictureDemoActivity extends BaseActivity {
 	private String dir_temp;
 	private ChoosePicturePopWindow menuWindow;
 	private TextView tv_cancel,tv_next;
+
+	private EditText et_des;
+	private UnScrollableGridView gv_pics;
+
+	private List<String>list_choosed;
+	private Adapter_choosepic adapter_choosed;
+
 	
 	
 	private String path;
@@ -49,6 +62,8 @@ public class  ChoosePictureDemoActivity extends BaseActivity {
 	public static final int PHOTORESOULT = 3;// 结果
 	public static final int CROPIMAGES = 4;
 
+
+	public static final  int RESULT_CHOOSEPIC=1001;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +82,8 @@ public class  ChoosePictureDemoActivity extends BaseActivity {
 	public void bindListener() {
 		
 		civ.setOnClickListener(clickListener);
+		tv_cancel.setOnClickListener(this);
+		tv_next.setOnClickListener(this);
 	}
 
 
@@ -76,12 +93,29 @@ public class  ChoosePictureDemoActivity extends BaseActivity {
 		civ=(CircleImageView) findViewById(R.id.civ);
 		tv_cancel= (TextView) findViewById(R.id.tv_choosepic_cancel);
 		tv_next= (TextView) findViewById(R.id.tv_choosepic_next);
+		et_des= (EditText) findViewById(R.id.et_choosepic_des);
+		gv_pics= (UnScrollableGridView) findViewById(R.id.gv_choosepic_pics);
 		
 	}
 
 	@Override
 	public void initData() {
 		dir_temp= FileDownloadUtil.getDefaultLocalDir(PathConsts.DIR_TEMP);
+
+
+		list_choosed=new ArrayList<>();
+		adapter_choosed=new Adapter_choosepic(ChoosePictureDemoActivity.this,list_choosed);
+		gv_pics.setAdapter(adapter_choosed);
+
+		adapter_choosed.setOnChooseListener(new Adapter_choosepic.OnChooseListener() {
+			@Override
+			public void onChoose() {
+
+				menuWindow = new ChoosePicturePopWindow(ChoosePictureDemoActivity.this, clickListener);
+				menuWindow.showAtLocation(ChoosePictureDemoActivity.this.findViewById(R.id.main), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+
+			}
+		});
 	}
 	
 	
@@ -91,9 +125,6 @@ public class  ChoosePictureDemoActivity extends BaseActivity {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.civ:// 更换头像
-
-				menuWindow = new ChoosePicturePopWindow(ChoosePictureDemoActivity.this, clickListener);
-				menuWindow.showAtLocation(ChoosePictureDemoActivity.this.findViewById(R.id.main), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
 
 				break;
 			case R.id.btn_take_photo:// 拍照
@@ -109,17 +140,15 @@ public class  ChoosePictureDemoActivity extends BaseActivity {
 				menuWindow.dismiss();
 //				selectPicFromLocal();// 调用系统相册
 				Intent i=new Intent();
-				i.setClass(ChoosePictureDemoActivity.this,ImageListActivity.class);
-				startActivity(i);
+				i.putExtra("count",list_choosed.size());
+				i.setClass(ChoosePictureDemoActivity.this, ImageListActivity.class);
+//				startActivity(i);
+
+				startActivityForResult(i,RESULT_CHOOSEPIC);
 
 				break;
 
-				case R.id.tv_choosepic_cancel:
-					finish();
-					break;
-				case R.id.tv_choosepic_next:
 
-					break;
 			}
 		}
 	};
@@ -172,6 +201,8 @@ public class  ChoosePictureDemoActivity extends BaseActivity {
 				path = data.getStringExtra("path");
 				new ImageUploadTask().execute(path);
 				ImageLoader.getInstance().displayImage("file://" + path, civ);
+				list_choosed.add(path);
+				adapter_choosed.setData(list_choosed);
 			}
 		} else if (requestCode == PHOTORESOULT) {// 打开系统相册进行裁剪图片
 			if (data == null) {// 处理返回，取消键被点击报空指针异常
@@ -184,6 +215,16 @@ public class  ChoosePictureDemoActivity extends BaseActivity {
 			if (startCrop != null) {
 				startCrop(getPath(ChoosePictureDemoActivity.this, startCrop));
 //				findPicByUri(startCrop);
+			}
+		}
+
+
+		if(requestCode==RESULT_CHOOSEPIC){
+
+			if(data!=null){
+				ArrayList<String>list=data.getStringArrayListExtra("piclist");
+				list_choosed.addAll(list);
+				adapter_choosed.setData(list_choosed);
 			}
 		}
 	}
@@ -233,6 +274,20 @@ public class  ChoosePictureDemoActivity extends BaseActivity {
 	@Override
 	public void onClick(View v) {
 
+		switch (v.getId())
+		{
+			case R.id.tv_choosepic_cancel:
+				finish();
+				break;
+			case R.id.tv_choosepic_next:
+
+				if(list_choosed.size()==0){
+					Toast.makeText(ChoosePictureDemoActivity.this,"请先选择图片",Toast.LENGTH_SHORT).show();
+					return;
+				}
+				startActivity(new Intent(ChoosePictureDemoActivity.this, SendSettingActivity.class));
+				break;
+		}
 	}
 
 

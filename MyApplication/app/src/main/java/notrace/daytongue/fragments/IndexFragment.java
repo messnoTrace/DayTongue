@@ -18,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,20 +133,44 @@ public class IndexFragment extends LazyFragment {
 
         adapter_photo=new CommomAdapter<RCMDModel>(mContext,list_photo,R.layout.item_index_user) {
             @Override
-            public void convert(CommomViewHolder mHolder, RCMDModel item, int position) {
+            public void convert(final CommomViewHolder mHolder, RCMDModel item, int position) {
 
-                ImageView imageView= (ImageView) mHolder.getConvertView().findViewById(R.id.iv_item_indexuser_pic);
-                RelativeLayout.LayoutParams params= (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+               final ImageView imageView= (ImageView) mHolder.getConvertView().findViewById(R.id.iv_item_indexuser_pic);
+               final RelativeLayout.LayoutParams params= (RelativeLayout.LayoutParams) imageView.getLayoutParams();
 
                 int width=CommonConst.SCREENWIDTH/2-20;
                 params.width=width;
 
-                Bitmap bm= com.nostra13.universalimageloader.core.ImageLoader.getInstance().loadImageSync(item.getImgUrl());
+
+
+
+                 com.nostra13.universalimageloader.core.ImageLoader.getInstance().loadImage(item.getImgUrl(), new ImageLoadingListener() {
+                     @Override
+                     public void onLoadingStarted(String s, View view) {
+
+                     }
+
+                     @Override
+                     public void onLoadingFailed(String s, View view, FailReason failReason) {
+
+                     }
+
+                     @Override
+                     public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+
+                         params.height = bitmap.getHeight();
+                         imageView.setImageBitmap(bitmap);
+                         mHolder.setVisiblility(R.id.tv_item_indexuser_name, View.GONE);
+                     }
+
+                     @Override
+                     public void onLoadingCancelled(String s, View view) {
+
+                     }
+                 });
+
 //                com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(item.getImgUrl(), imageView);
-                params.height=bm.getHeight();
-                imageView.setImageBitmap(bm);
-//                bm.recycle();
-                mHolder.setVisiblility(R.id.tv_item_indexuser_name, View.GONE);
+
 
             }
         };
