@@ -2,9 +2,6 @@ package notrace.daytongue.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -23,13 +20,17 @@ import notrace.daytongue.activitys.ImageViewerActivity;
 import notrace.daytongue.activitys.OtherPersonCenterActivity;
 import notrace.daytongue.commen.CommonConst;
 import notrace.daytongue.commen.RequestHelper;
+import notrace.daytongue.commen.XMLParser;
 import notrace.daytongue.entitys.Comment;
 import notrace.daytongue.entitys.Comments;
 import notrace.daytongue.entitys.Photo;
 import notrace.daytongue.entitys.Topic;
+import notrace.daytongue.entitys.response.BaseResult;
 import notrace.daytongue.http.RequestCallBack;
+import notrace.daytongue.views.TwoStatusTextView;
 import notrace.daytongue.views.UnScrollableGridView;
 import notrace.daytongue.views.UnScrollableListView;
+import notrace.daytongue.xmlutils.XmlUtils;
 
 /**
  * Created by notrace on 2015/9/18.
@@ -38,6 +39,7 @@ public class TopicAdapter extends CommomAdapter<Topic> {
 
 
 
+    private boolean isGoodClick=false;
     private int currentItem;
     public TopicAdapter(Context context, List<Topic> mDatas, int mItemLayoutId) {
         super(context, mDatas, mItemLayoutId);
@@ -64,24 +66,34 @@ public class TopicAdapter extends CommomAdapter<Topic> {
 
 
         //add good
-        TextView tvGood= (TextView) mHolder.getConvertView().findViewById(R.id.tv_item_space_good);
+        final TwoStatusTextView tvGood= (TwoStatusTextView) mHolder.getConvertView().findViewById(R.id.tv_item_space_good);
+
+        checkGood(item.getTCode(),tvGood);
+
+        //此处需要根据Topic中某个变量判断是否点过赞
+//        if(tvGood.getTag())
         tvGood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addGood(mHolder);
+                    //没有点过赞
+//                boolean status= (boolean) v.getTag();
+//                tvGood.changeStatus();
+                addGood((TwoStatusTextView) v);
+
             }
         });
 
-
-
-
         //collection
-        TextView tvCollection= (TextView) mHolder.getConvertView().findViewById(R.id.tv_item_space_collection);
+        final TwoStatusTextView tvCollection= (TwoStatusTextView) mHolder.getConvertView().findViewById(R.id.tv_item_space_collection);
+
+        tvCollection.setStatus(true);//default
         tvCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+//                tvCollection.changeStatus();
+                collection(tvCollection);
             }
+
         });
 
 
@@ -134,11 +146,11 @@ public class TopicAdapter extends CommomAdapter<Topic> {
         usgv_photo.setAdapter(adapter_photo);
 
 
-        RecyclerView rcv_user= (RecyclerView) mHolder.getConvertView().findViewById(R.id.rcv_item_space_gooditem);
-
-        LinearLayoutManager userManager=new LinearLayoutManager(mContext);
-        userManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rcv_user.setLayoutManager(userManager);
+//        RecyclerView rcv_user= (RecyclerView) mHolder.getConvertView().findViewById(R.id.rcv_item_space_gooditem);
+//
+//        LinearLayoutManager userManager=new LinearLayoutManager(mContext);
+//        userManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+//        rcv_user.setLayoutManager(userManager);
 
 
         //comment
@@ -166,7 +178,7 @@ public class TopicAdapter extends CommomAdapter<Topic> {
                 case R.id.tv_item_space_good:
 
                     //good
-                    addGood(currentHolder);
+//                    addGood(currentHolder);
 
                     break;
 
@@ -197,23 +209,28 @@ public class TopicAdapter extends CommomAdapter<Topic> {
         }
     };
 
-    private void addGood(final CommomViewHolder mHolder){
+    private void addGood(final TwoStatusTextView textView){
         RequestHelper.addGood(mDatas.get(currentItem).getTCode(), "2", MyApplication.currentUser.getUcode(), "4", new RequestCallBack<String>() {
             @Override
             public void onSuccess(String s) {
+                boolean status = XMLParser.getStatusCode(s);
 
-//                GoodResult result= XMLParser.xml2GoodResult(s);
+                if (status) {
+//                    if(bs){
+//                        //已经赞过
+//                        textView.setText("点赞");
+//                        textView.setTag(false);
+//
+//                    }else
+//                    {
+//                        textView.setText("取消赞");
+//                        textView.setTag(true);
+//                    }
 
-                String[]s1=s.split(">");
-//                Log.d("================",result.getString());
-                String str=s1[s1.length-1];
-                String status=str.substring(0,1);
-                Log.d("================", status);
-
-
-                if(Integer.valueOf(status)>0){
-                    mHolder.setText(R.id.tv_item_space_good,"取消赞");
+                    textView.changeStatus();
                 }
+
+
             }
 
             @Override
@@ -271,7 +288,49 @@ public class TopicAdapter extends CommomAdapter<Topic> {
                 });
     }
 
-    private void collection(){}
+
+    private void checkGood(String fcode, final TwoStatusTextView textView){
+        final boolean isGood=false;
+            RequestHelper.CheckGood(fcode, "2", MyApplication.currentUser.getUcode(), new RequestCallBack<String>() {
+                @Override
+                public void onSuccess(String s) {
+
+
+                    textView.setStatus(XMLParser.getStatusCode(s));
+//                    if(XMLParser.getStatusCode(s)){
+//                        textView.setText("取消赞");
+//                        textView.setTag(true);
+//                    }else
+//                    {
+//                        textView.setText("点赞");
+//                        textView.setTag(false);
+//                    }
+                }
+
+                @Override
+                public void onFail(String msg) {
+
+                }
+            });
+    }
+    private void collection(final TwoStatusTextView textView){
+
+        RequestHelper.manageCollecion(mDatas.get(currentItem).getTCode(), "1", MyApplication.currentUser.getUcode(), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(String s) {
+                BaseResult result= XmlUtils.xmlToBean(s,BaseResult.class);
+                if(Integer.valueOf(result.getStatus())>0){
+                    textView.changeStatus();
+                }
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
+    }
     private void delete(){}
     private void report(){}
 }

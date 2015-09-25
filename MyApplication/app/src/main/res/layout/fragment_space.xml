@@ -11,12 +11,12 @@ android:layout_height="match_parent"
         android:layout_height="@dimen/navigation_height">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_launcher"
-            android:padding="5dp"
+            android:src="@drawable/takephoto"
+            android:layout_marginLeft="10dp"
             android:id="@+id/iv_space_image"
             />
 
@@ -27,14 +27,14 @@ android:layout_height="match_parent"
             android:layout_centerInParent="true"
             />
 
-        <ImageView
+        <notrace.daytongue.views.CircleImageView
             android:id="@+id/iv_space_personcenter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/icon_touxiang"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:padding="5dp"
+            android:layout_marginRight="10dp"
             />
 
     </RelativeLayout>

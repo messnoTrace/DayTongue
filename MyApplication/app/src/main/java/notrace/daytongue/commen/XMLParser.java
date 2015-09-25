@@ -116,4 +116,20 @@ public class XMLParser {
         UserList list= (UserList) xStream.fromXML(xml);
         return  list;
     }
+
+    /**
+     * get status for good collection
+     * @param xml
+     * @return
+     */
+    public static boolean getStatusCode(String xml){
+
+        String[]s1=xml.split(">");
+        String str=s1[s1.length-1];
+        String status=str.substring(0,1);
+        if(Integer.valueOf(status)>0){
+            return  true;
+        }
+        return  false;
+    }
 }

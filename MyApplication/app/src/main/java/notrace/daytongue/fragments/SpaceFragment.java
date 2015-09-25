@@ -6,6 +6,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,14 +21,16 @@ import notrace.daytongue.commen.RequestHelper;
 import notrace.daytongue.entitys.Topic;
 import notrace.daytongue.entitys.Topics;
 import notrace.daytongue.http.RequestCallBack;
+import notrace.daytongue.views.CircleImageView;
 import notrace.daytongue.views.UnScrollableListView;
 
 
 public class SpaceFragment extends LazyFragment implements View.OnClickListener{
 
 
-    private ImageView iv_space_image,iv_space_personcenter;
+    private CircleImageView iv_space_personcenter;
 
+    private ImageView iv_space_image;
     private int page=10;
 
 
@@ -94,6 +98,8 @@ public class SpaceFragment extends LazyFragment implements View.OnClickListener{
 
     private void loadData(){
 
+
+        ImageLoader.getInstance().displayImage(MyApplication.currentUser.getUserHead(),iv_space_personcenter);
         RequestHelper.getOnlyTopic(String.valueOf(page), "", "0", MyApplication.currentUser.getUcode(), MyApplication.currentUser.getUcode(), "", new RequestCallBack<Topics>() {
             @Override
             public void onSuccess(Topics topics) {

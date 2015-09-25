@@ -121,4 +121,12 @@
         <attr name="android:requiresFadingEdge" />
         <attr name="android:fadingEdgeLength" />
     </declare-styleable>
+    
+    <declare-styleable name="TwoStatusTextView">
+        <attr name="nomalImage" format="reference"></attr>
+        <attr name="clickedImage" format="reference"></attr>
+        <attr name="nomalText" format="string"></attr>
+        <attr name="clickedText" format="string"></attr>
+        <attr name="drawableposition" format="integer"></attr>
+    </declare-styleable>
 </resources>

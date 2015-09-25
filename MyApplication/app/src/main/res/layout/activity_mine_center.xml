@@ -49,27 +49,36 @@
             android:layout_marginTop="20dp"
             />
 
+
         <TextView
+            android:id="@+id/tv_minecenter_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sign"
             android:layout_alignLeft="@id/tv_minecenter_name"
             android:layout_below="@id/tv_minecenter_name"
-            android:id="@+id/tv_minecenter_sign"
-            android:text="个性签名"
             android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
-
-
-
+            />
         <ImageView
+            android:id="@+id/iv1"
             android:layout_width="12dp"
             android:layout_height="20dp"
             android:src="@drawable/right_goto"
             android:layout_centerVertical="true"
-
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             />
+
+
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_toLeftOf="@id/iv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gcode"/>
     </RelativeLayout>
 
     <include layout="@layout/view_divider_match_parent"/>
@@ -180,7 +189,7 @@
                     android:layout_height="22dp"
                     android:layout_marginRight="10dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/icon_search"/>
+                    android:src="@drawable/attitu"/>
                 <TextView
                     android:layout_toRightOf="@id/iv_minecenter_attitude"
                     android:layout_width="wrap_content"
@@ -218,7 +227,7 @@
                     android:layout_height="22dp"
                     android:layout_marginRight="10dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/icon_search"/>
+                    android:src="@drawable/collection" />
                 <TextView
                     android:layout_toRightOf="@id/iv_minecenter_collection"
                     android:layout_width="wrap_content"
@@ -250,7 +259,7 @@
                     android:layout_height="22dp"
                     android:layout_marginRight="10dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/icon_search"/>
+                    android:src="@drawable/circle"/>
                 <TextView
                     android:layout_toRightOf="@id/iv_minecenter_circle"
                     android:layout_width="wrap_content"
@@ -281,7 +290,7 @@
                     android:layout_height="22dp"
                     android:layout_marginRight="10dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/icon_search"/>
+                    android:src="@drawable/suggestion"/>
                 <TextView
                     android:layout_toRightOf="@id/iv_minecenter_suggestion"
                     android:layout_width="wrap_content"
@@ -315,7 +324,7 @@
                     android:layout_height="22dp"
                     android:layout_marginRight="10dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/icon_search"/>
+                    android:src="@drawable/settingcenter"/>
                 <TextView
                     android:layout_toRightOf="@id/iv_minecenter_setting"
                     android:layout_width="wrap_content"

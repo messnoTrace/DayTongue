@@ -2,49 +2,53 @@ package notrace.daytongue.activitys;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import notrace.daytongue.BaseActivity;
-import notrace.daytongue.MyApplication;
 import notrace.daytongue.R;
-import notrace.daytongue.commen.RequestHelper;
 
-public class CollectionActivity extends BaseActivity {
+public class ForgetPwdActivity extends BaseActivity {
 
+    private EditText et_name;
+    private Button btn_next;
 
-    private int page=10;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collection);
+        setContentView(R.layout.activity_forget_pwd);
         findViews();
         bindListener();
         initData();
-
     }
 
     @Override
     public void findViews() {
 
+        setNavigation("忘记密码");
+        btn_next= (Button) findViewById(R.id.btn_forgetpwd_next);
+        et_name= (EditText) findViewById(R.id.et_forgetpwd_name);
     }
 
     @Override
     public void bindListener() {
+        btn_next.setOnClickListener(this);
 
     }
 
     @Override
     public void initData() {
 
-        loadData();
-    }
-
-    private void  loadData(){
-
-        RequestHelper.getCollections(String.valueOf(page), MyApplication.currentUser.getUcode(),"");
     }
 
     @Override
     public void onClick(View v) {
 
+
+        switch (v.getId())
+        {
+            case R.id.btn_forgetpwd_next:
+                break;
+        }
     }
 }

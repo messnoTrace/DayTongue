@@ -30,6 +30,8 @@ public class MyApplication extends Application {
 
 
     public static LoginResult currentUser;
+
+    private static boolean isLogin=false;
 	
 	private Context applicationContext;
     @Override

@@ -148,6 +148,10 @@
             android:name=".activitys.SendSettingActivity"
             android:label="@string/title_activity_send_setting" >
         </activity>
+        <activity
+            android:name=".activitys.ForgetPwdActivity"
+            android:label="@string/title_activity_forget_pwd" >
+        </activity>
     </application>
 
 </manifest>

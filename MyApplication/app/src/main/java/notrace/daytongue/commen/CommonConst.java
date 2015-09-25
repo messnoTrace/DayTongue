@@ -63,6 +63,12 @@ public class CommonConst {
 
     public static final  String URL_MANAGECOLLECTION=HOST+"ManageCollections";
 
+    public static  final String URL_DELETETOPIC=HOST+"DeleteTopic";
+    public static  final String URL_DELETECOMMENT=HOST+"DeleteComment";
+    public static final  String URL_CHECKGOOD=HOST+"CheckGood";
+
+    public static final  String URL_GETCOLLECTION=HOST+"GetCollections";
+
     public  static int SCREENWIDTH;
     public static  int SCREENHEIGHT;
 

@@ -78,7 +78,7 @@ public class DiscoveryFragment extends LazyFragment {
         GridEntity e1=new GridEntity(R.drawable.ic_launcher,"图片墙");
         GridEntity e2=new GridEntity(R.drawable.ic_launcher,"随便看看");
         GridEntity e3=new GridEntity(R.drawable.ic_launcher,"找人");
-        GridEntity e4=new GridEntity(R.drawable.ic_launcher,"扫一扫");
+        GridEntity e4=new GridEntity(R.drawable.saoyisao,"扫一扫");
         list.add(e1);
         list.add(e2);
         list.add(e3);

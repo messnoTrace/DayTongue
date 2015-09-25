@@ -640,7 +640,7 @@ public class RequestHelper {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Log.d("==============",volleyError.toString());
+                Log.d("==============", volleyError.toString());
 
             }
         }){
@@ -788,7 +788,7 @@ public class RequestHelper {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Log.d("=====================",volleyError.toString());
+                Log.d("=====================", volleyError.toString());
             }
         }){
             @Override
@@ -818,7 +818,145 @@ public class RequestHelper {
 
 
 
+    public static void deleteTopic(final String tcode, final String currentUcode){
 
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_DELETETOPIC, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String ,String>params=new HashMap<>();
+                params.put("tCode",tcode);
+                params.put("currentUCode",currentUcode);
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+
+        VolleyRequest.getInstance().getQue().add(request);
+    }
+
+
+    public static void deleteComment(final String cCode){
+
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_DELETECOMMENT, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>params=new HashMap<>();
+                params.put("cCode",cCode);
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+
+        VolleyRequest.getInstance().getQue().add(request);
+    }
+
+
+    public static void CheckGood(final String fCode, final String type, final String uCode, final RequestCallBack<String>callBack){
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_CHECKGOOD, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+                callBack.onSuccess(s);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+                callBack.onFail(volleyError.toString());
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>params=new HashMap<>();
+                params.put("fCode",fCode);
+                params.put("type",type);
+                params.put("uCode",uCode);
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+
+        VolleyRequest.getInstance().getQue().add(request);
+    }
+
+    public static void manageCollecion(final String tCode, final String act, final String uCode, final RequestCallBack<String>callBack){
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_MANAGECOLLECTION, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+                callBack.onSuccess(s);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+                callBack.onFail(volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String>params=new HashMap<>();
+                params.put("tCode",tCode);
+                params.put("act",act);
+                params.put("uCode",uCode);
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+        VolleyRequest.getInstance().getQue().add(request);
+    }
+
+
+
+    public  static  void getCollections(final String pageIndex, final String uCode, final String datetime)
+    {
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GETCOLLECTION, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                Log.d("==============",s);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>params=new HashMap<>();
+                params.put("pageIndex",pageIndex);
+                params.put("uCode",uCode);
+                params.put("datetime",datetime);
+                params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+        VolleyRequest.getInstance().getQue().add(request);
+    }
 
 
     //TODO  no data
