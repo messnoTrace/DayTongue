@@ -173,7 +173,6 @@
         >
 
 
-
         <TextView
             android:id="@+id/tv_item_space_count"
             android:layout_width="wrap_content"
@@ -187,7 +186,7 @@
         <notrace.daytongue.views.HorizontalListView
             android:id="@+id/hlv_item_space_gooditem"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="60dp"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"

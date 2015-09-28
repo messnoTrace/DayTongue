@@ -14,6 +14,11 @@ import notrace.daytongue.R;
 public class TwoStatusTextView extends TextView{
 
     private boolean STATUS_NORMAL=true;
+
+    public boolean isSTATUS_NORMAL() {
+        return STATUS_NORMAL;
+    }
+
     private int drawable_nomal;
     private int drawable_clicked;
 

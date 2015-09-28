@@ -17,6 +17,7 @@ import notrace.daytongue.entitys.Comments;
 import notrace.daytongue.entitys.Topics;
 import notrace.daytongue.entitys.response.BaseResult;
 import notrace.daytongue.entitys.response.GetUserInfoResult;
+import notrace.daytongue.entitys.response.GooderList;
 import notrace.daytongue.entitys.response.LoginResult;
 import notrace.daytongue.entitys.response.UserList;
 import notrace.daytongue.http.RequestCallBack;
@@ -871,6 +872,13 @@ public class RequestHelper {
     }
 
 
+    /**
+     * check isgood ok
+     * @param fCode
+     * @param type
+     * @param uCode
+     * @param callBack
+     */
     public static void CheckGood(final String fCode, final String type, final String uCode, final RequestCallBack<String>callBack){
         StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_CHECKGOOD, new Response.Listener<String>() {
             @Override
@@ -893,6 +901,40 @@ public class RequestHelper {
                 params.put("type",type);
                 params.put("uCode",uCode);
                 params.put("tokenKey",CommonConst.TOKENID);
+                return params;
+            }
+        };
+
+        VolleyRequest.getInstance().getQue().add(request);
+    }
+
+
+    public static void getGoodByCode(final String code, final String uCode, final String pageIndex, final RequestCallBack<GooderList>callBack){
+
+
+        StringRequest request=new StringRequest(Request.Method.POST, CommonConst.URL_GETGOODBYCODE, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                GooderList list=XMLParser.xml2GoodList(s);
+                if(list!=null){
+                    callBack.onSuccess(list);
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                callBack.onFail(volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>params=new HashMap<>();
+                params.put("pageIndex",pageIndex);
+                params.put("tokenKey",CommonConst.TOKENID);
+                params.put("code",code);
+                params.put("uCode",uCode);
                 return params;
             }
         };
@@ -957,6 +999,9 @@ public class RequestHelper {
         };
         VolleyRequest.getInstance().getQue().add(request);
     }
+
+
+
 
 
     //TODO  no data

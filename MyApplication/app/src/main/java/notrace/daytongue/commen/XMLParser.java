@@ -11,7 +11,9 @@ import notrace.daytongue.entitys.Topic;
 import notrace.daytongue.entitys.Topics;
 import notrace.daytongue.entitys.Users;
 import notrace.daytongue.entitys.response.GetUserInfoResult;
+import notrace.daytongue.entitys.response.Good;
 import notrace.daytongue.entitys.response.GoodResult;
+import notrace.daytongue.entitys.response.GooderList;
 import notrace.daytongue.entitys.response.RCMDModel;
 import notrace.daytongue.entitys.response.UserList;
 
@@ -112,9 +114,25 @@ public class XMLParser {
         XStream xStream=new XStream();
         xStream.alias("root",UserList.class);
         xStream.alias("Users", Users.class);
-        xStream.aliasField("item",UserList.class,"item");
+        xStream.aliasField("item", UserList.class, "item");
         UserList list= (UserList) xStream.fromXML(xml);
         return  list;
+    }
+
+
+    /**
+     * get topic item gooderlist
+     * @param xml
+     * @return
+     */
+    public static GooderList xml2GoodList(String xml){
+        XStream xStream=new XStream();
+        xStream.alias("root",GooderList.class);
+        xStream.alias("Good", Good.class);
+        xStream.aliasField("item", GooderList.class, "item");
+        GooderList  list= (GooderList) xStream.fromXML(xml);
+        return  list;
+
     }
 
     /**

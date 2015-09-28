@@ -69,6 +69,8 @@ public class CommonConst {
 
     public static final  String URL_GETCOLLECTION=HOST+"GetCollections";
 
+    public static final String URL_GETGOODBYCODE=HOST+"GetGoodByCode";
+
     public  static int SCREENWIDTH;
     public static  int SCREENHEIGHT;
 

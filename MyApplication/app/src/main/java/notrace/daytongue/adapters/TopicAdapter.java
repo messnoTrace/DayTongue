@@ -26,7 +26,10 @@ import notrace.daytongue.entitys.Comments;
 import notrace.daytongue.entitys.Photo;
 import notrace.daytongue.entitys.Topic;
 import notrace.daytongue.entitys.response.BaseResult;
+import notrace.daytongue.entitys.response.Good;
+import notrace.daytongue.entitys.response.GooderList;
 import notrace.daytongue.http.RequestCallBack;
+import notrace.daytongue.views.HorizontalListView;
 import notrace.daytongue.views.TwoStatusTextView;
 import notrace.daytongue.views.UnScrollableGridView;
 import notrace.daytongue.views.UnScrollableListView;
@@ -41,8 +44,18 @@ public class TopicAdapter extends CommomAdapter<Topic> {
 
     private boolean isGoodClick=false;
     private int currentItem;
+
+
+    private List<GooderList>list_gooders;
+    private List<CommomAdapter<Good>>list_gooderadapters;
+
+
+    private Good currentGood=new Good(false,MyApplication.currentUser.getUcode(),"",MyApplication.currentUser.getNickName(),MyApplication.currentUser.getUserHead());
+
     public TopicAdapter(Context context, List<Topic> mDatas, int mItemLayoutId) {
         super(context, mDatas, mItemLayoutId);
+        list_gooders=new ArrayList<>();
+        list_gooderadapters=new ArrayList<>();
     }
 
     private CommomViewHolder currentHolder;
@@ -95,6 +108,9 @@ public class TopicAdapter extends CommomAdapter<Topic> {
             }
 
         });
+
+        HorizontalListView hlv= (HorizontalListView) mHolder.getConvertView().findViewById(R.id.hlv_item_space_gooditem);
+        initGood(mDatas.get(currentItem).getTCode(),mDatas.get(position).getUCode(),hlv);
 
 
 
@@ -175,12 +191,7 @@ public class TopicAdapter extends CommomAdapter<Topic> {
 
             switch (v.getId())
             {
-                case R.id.tv_item_space_good:
 
-                    //good
-//                    addGood(currentHolder);
-
-                    break;
 
                 case R.id.tv_item_space_comment:
 
@@ -189,9 +200,6 @@ public class TopicAdapter extends CommomAdapter<Topic> {
 
                     break;
 
-                case R.id.tv_item_space_collection:
-                    //collection
-                    break;
 
                 case  R.id.tv_item_space_delete:
                     //delete
@@ -216,20 +224,9 @@ public class TopicAdapter extends CommomAdapter<Topic> {
                 boolean status = XMLParser.getStatusCode(s);
 
                 if (status) {
-//                    if(bs){
-//                        //已经赞过
-//                        textView.setText("点赞");
-//                        textView.setTag(false);
-//
-//                    }else
-//                    {
-//                        textView.setText("取消赞");
-//                        textView.setTag(true);
-//                    }
-
+                    notifyGooderList(textView.isSTATUS_NORMAL());
                     textView.changeStatus();
                 }
-
 
             }
 
@@ -294,17 +291,7 @@ public class TopicAdapter extends CommomAdapter<Topic> {
             RequestHelper.CheckGood(fcode, "2", MyApplication.currentUser.getUcode(), new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(String s) {
-
-
                     textView.setStatus(XMLParser.getStatusCode(s));
-//                    if(XMLParser.getStatusCode(s)){
-//                        textView.setText("取消赞");
-//                        textView.setTag(true);
-//                    }else
-//                    {
-//                        textView.setText("点赞");
-//                        textView.setTag(false);
-//                    }
                 }
 
                 @Override
@@ -318,8 +305,8 @@ public class TopicAdapter extends CommomAdapter<Topic> {
         RequestHelper.manageCollecion(mDatas.get(currentItem).getTCode(), "1", MyApplication.currentUser.getUcode(), new RequestCallBack<String>() {
             @Override
             public void onSuccess(String s) {
-                BaseResult result= XmlUtils.xmlToBean(s,BaseResult.class);
-                if(Integer.valueOf(result.getStatus())>0){
+                BaseResult result = XmlUtils.xmlToBean(s, BaseResult.class);
+                if (Integer.valueOf(result.getStatus()) > 0) {
                     textView.changeStatus();
                 }
 
@@ -331,6 +318,42 @@ public class TopicAdapter extends CommomAdapter<Topic> {
             }
         });
     }
+
+    private void initGood(String code,String uCode, final HorizontalListView hlv){
+
+        RequestHelper.getGoodByCode(code, uCode, "5", new RequestCallBack<GooderList>() {
+            @Override
+            public void onSuccess(GooderList gooderList) {
+
+                list_gooders.add(gooderList);
+                CommomAdapter<Good> adapter = new CommomAdapter<Good>(mContext, gooderList.getItem(), R.layout.item_good) {
+                    @Override
+                    public void convert(CommomViewHolder mHolder, Good item, int position) {
+
+                        mHolder.setImageUri(R.id.civ_item_good_head, item.getUserHead());
+                    }
+                };
+                hlv.setAdapter(adapter);
+                list_gooderadapters.add(adapter);
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
+
+    }
     private void delete(){}
     private void report(){}
+    private void notifyGooderList(boolean isGood){
+
+        if(isGood){
+            list_gooders.get(currentItem).getItem().add(currentGood);
+        }else
+        {
+            list_gooders.get(currentItem).getItem().remove(currentGood);
+        }
+        list_gooderadapters.get(currentItem).notifyDataSetChanged();
+    }
 }
